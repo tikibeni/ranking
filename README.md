@@ -1,37 +1,56 @@
 # windsurf-ranking
 Järjestelmä purjelautailun kilpailukausien ranking-pistelaskua varten.
 
-Taustatietona: 
-Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri lautaluokassa. Kaudessa on aina noin 4-5 "ranking"-kilpailua per luokka, joista muodostetaan kauden parhaat kilpailijat muutaman pistelaskusäännön pohjalta. Ongelmana on, että tällä hetkellä lajiliitolla ei ole mitään järjestelmää/ohjelmaa/taulukkoa, mihin he varastoisivat näitä pisteitä, vaan esimerkiksi tällä kaudella meikäläinen kaivoi kaikkien (oman lautaluokan) kilpailijoiden sijoitukset ja laskin pisteet manuaalisesti. Näinpä ideana olisi toteuttaa järjestelmä, jonka avulla voitaisiin laskea useiden kymmenien kilpailijoiden tuloksia läpi kauden syöttämällä kilpailu- ja kilpailijatiedot järjestelmään.
+## Taustatietona: 
+Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri lautaluokassa. Kaudessa on aina noin 4-5 "ranking"-kilpailua per luokka, joista muodostetaan kauden parhaat kilpailijat muutaman pistelaskusäännön pohjalta. Ongelmana on, että tällä hetkellä lajiliitolla ei ole mitään järjestelmää/ohjelmaa/taulukkoa, mihin he varastoisivat näitä pisteitä, vaan esimerkiksi tällä kaudella meikäläinen kaivoi kaikkien (oman lautaluokan) kilpailijoiden sijoitukset ja laskin pisteet manuaalisesti. Näinpä ideana olisi toteuttaa järjestelmä, jonka avulla voitaisiin laskea useiden kymmenien kilpailijoiden luokkakohtaisia tuloksia läpi kauden syöttämällä kilpailu- ja kilpailijatiedot järjestelmään.
 
-Lisätoiminnallisuuksia / hifistelyä:
-	* Mahdollisuus laittaa korjauspyyntö säpöön / admin-tunnukselle
-	* Mikäli taidot ja aika riittää, niin käyttäjätunnuksen luontimahdollisuus, jotta järjestelmän 	voisi saada toimimaan siltä pohjalta, että kilpailijat lähettävät itse tuloksia adminille, joka hyväksyy / hylkää ehdotukset.
+Halutut toiminnallisuudet:
+- Kausi- ja luokkakohtaiset pistetaulukot kilpailijoista
+- Admin pystyy muokkaamaan kaikkien taulujen sisältöä
+	* Kilpailujen, tulosten, kilpailijoiden ja luokkien lisääminen, muokkaaminen ja poistaminen
+- Pystyy hakea halutun kauden tulokset yhteenvetokyselyiden avulla
+- Pystyy hakemaan kaikki kilpailijat luokkaa kohden
+	* Kilpailija liittyy luokkaan mikäli tämä on osallistunut kyseisen luokan kilpailuun haetulla kaudella.
+
+
+Lisätoiminnallisuuksia, idealista:
+- Mahdollisuus laittaa korjauspyyntö säpöön / admin-tunnukselle
+- Kilpailijan oma kirjautuminen, jonka myötä näkee omat tulokset
+- Kilpailijoiden välineet
 
 Huomioita:
-- Kilpailija voi olla useammassa kilpailuluokassa
-- Eri kilpailuluokkien mukaiset pistelaskusäännöt
-	* Discardit.
+- Luokkaan liittyy useampi kilpailu
+- Kilpailuun liittyy yksi luokka
+- Kilpailuun liittyy useampi, kilpailijakohtainen tulos
+- Kilpailuun liittyy useampi kilpailija
+- Kilpailijaan voi liittyä useampi kilpailu
 
-Tauluja voisivat olla:
+- Muista eri kilpailuluokkien mukaiset pistelaskusäännöt!
 
-- Tulokset
+
+Tauluja voisivat alustavasti olla:
+
+- Tulos
+	* Tulos
 	* Tulokseen liittyvä kilpailu
-	* Tulokseen liittyvät kilpailijat
-	* Tulos:Double
 - Kilpailu
-	* Siihen liittyvä luokka
-	* Siihen liittyvät kilpailijat
-	* Kilpailun nimi
-	* Päivämäärä 
-- Luokka
-	* Liittyvät kilpailijat
-	* Luokkaan liittyvät kilpailut
-	* Kilpailijoiden lukumäärä luokassa
+	* Nimi
+	* Päivämäärä
+	* Paikka
+	* Kilpailuun liittyvä luokka
+	* Kilpailuun liittyvät kilpailijat
+	* Kilpailuun liittyvät tulokset
 - Kilpailija
 	* Nimi
-	* Pursiseura
 	* Purjenumero
-	* Kilpailijaan liittyvät kilpailuluokat
-	* Kilpailijaan liittyvät tulokset
-	* Kilpailijaan liittyvät välineet
+	* Pursiseura
+	* Kilpailijaan liittyvät kilpailut
+- Luokka
+	* Nimi
+	* Luokkaan liittyvät kilpailut
+- KilpailuKilpailija
+	* Liitostaulu, jossa viiteavaimet taulusta Kilpailu ja Kilpailija
+
+Tietokantakaavio:
+![alt-text][kuva]
+[kuva]: https://drive.google.com/file/d/1L8GCGs2CdE25ca4BiarVibcAIk-PCdLO/view?usp=sharing "Tietokantakaavio"
