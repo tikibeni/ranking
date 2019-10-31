@@ -24,6 +24,8 @@ Huomioita:
 - Kilpailuun liittyy useampi, kilpailijakohtainen tulos
 - Kilpailuun liittyy useampi kilpailija
 - Kilpailijaan voi liittyä useampi kilpailu
+- Tulokseen liittyy yksi kilpailija
+- Kilpailijaan voi liittyä useampi tulos
 
 - Muista eri kilpailuluokkien mukaiset pistelaskusäännöt!
 
@@ -31,8 +33,9 @@ Huomioita:
 Tauluja voisivat alustavasti olla:
 
 - Tulos
-	* Tulos
+	* Sijoitus
 	* Tulokseen liittyvä kilpailu
+	* Tulokseen liittyvä kilpailija
 - Kilpailu
 	* Nimi
 	* Päivämäärä
@@ -52,5 +55,4 @@ Tauluja voisivat alustavasti olla:
 	* Liitostaulu, jossa viiteavaimet taulusta Kilpailu ja Kilpailija
 
 Tietokantakaavio:
-![alt-text][kuva]
-[kuva]: https://drive.google.com/file/d/1L8GCGs2CdE25ca4BiarVibcAIk-PCdLO/view?usp=sharing "Tietokantakaavio"
+https://drive.google.com/file/d/1L8GCGs2CdE25ca4BiarVibcAIk-PCdLO/view?usp=sharing "Tietokantakaavio"
