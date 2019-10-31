@@ -4,7 +4,7 @@ Järjestelmä purjelautailun kilpailukausien ranking-pistelaskua varten.
 ## Taustatietona: 
 Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri lautaluokassa. Kaudessa on aina noin 4-5 "ranking"-kilpailua per luokka, joista muodostetaan kauden parhaat kilpailijat muutaman pistelaskusäännön pohjalta. Ongelmana on, että tällä hetkellä lajiliitolla ei ole mitään järjestelmää/ohjelmaa/taulukkoa, mihin he varastoisivat näitä pisteitä, vaan esimerkiksi tällä kaudella meikäläinen kaivoi kaikkien (oman lautaluokan) kilpailijoiden sijoitukset ja laskin pisteet manuaalisesti. Näinpä ideana olisi toteuttaa järjestelmä, jonka avulla voitaisiin laskea useiden kymmenien kilpailijoiden luokkakohtaisia tuloksia läpi kauden syöttämällä kilpailu- ja kilpailijatiedot järjestelmään.
 
-Halutut toiminnallisuudet:
+## Halutut toiminnallisuudet:
 - Kausi- ja luokkakohtaiset pistetaulukot kilpailijoista
 - Admin pystyy muokkaamaan kaikkien taulujen sisältöä
 	* Kilpailujen, tulosten, kilpailijoiden ja luokkien lisääminen, muokkaaminen ja poistaminen
@@ -13,12 +13,12 @@ Halutut toiminnallisuudet:
 	* Kilpailija liittyy luokkaan mikäli tämä on osallistunut kyseisen luokan kilpailuun haetulla kaudella.
 
 
-Lisätoiminnallisuuksia, idealista:
+## Lisätoiminnallisuuksia, idealista:
 - Mahdollisuus laittaa korjauspyyntö säpöön / admin-tunnukselle
 - Kilpailijan oma kirjautuminen, jonka myötä näkee omat tulokset
 - Kilpailijoiden välineet
 
-Huomioita:
+## Huomioita:
 - Luokkaan liittyy useampi kilpailu
 - Kilpailuun liittyy yksi luokka
 - Kilpailuun liittyy useampi, kilpailijakohtainen tulos
@@ -30,7 +30,7 @@ Huomioita:
 - Muista eri kilpailuluokkien mukaiset pistelaskusäännöt!
 
 
-Tauluja voisivat alustavasti olla:
+## Tauluja voisivat alustavasti olla:
 
 - Tulos
 	* Sijoitus
@@ -54,5 +54,5 @@ Tauluja voisivat alustavasti olla:
 - KilpailuKilpailija
 	* Liitostaulu, jossa viiteavaimet taulusta Kilpailu ja Kilpailija
 
-Tietokantakaavio:
+## Tietokantakaavio:
 https://drive.google.com/file/d/1L8GCGs2CdE25ca4BiarVibcAIk-PCdLO/view?usp=sharing "Tietokantakaavio"
