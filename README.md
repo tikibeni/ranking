@@ -52,7 +52,7 @@ Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri l
 	* Nimi
 	* Luokkaan liittyvät kilpailut
 - KilpailuKilpailija
-	* Liitostaulu, jossa viiteavaimet taulusta Kilpailu ja Kilpailija
+	* Liitostaulu, jossa viiteavaimet tauluista Kilpailu ja Kilpailija
 
 ## Tietokantakaavio:
 https://drive.google.com/file/d/1L8GCGs2CdE25ca4BiarVibcAIk-PCdLO/view?usp=sharing
