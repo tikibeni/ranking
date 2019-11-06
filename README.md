@@ -55,5 +55,4 @@ Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri l
 	* Liitostaulu, jossa viiteavaimet tauluista Kilpailu ja Kilpailija
 
 ## Tietokantakaavio:
-![alt text][logo]
-[logo]: https://github.com/tikibeni/windsurf-ranking/blob/master/kaavio.PNG "Tietokantakaavio"
+![alt text](https://github.com/tikibeni/windsurf-ranking/blob/master/kaavio.PNG?raw=true1 "Tietokantakaavio")
