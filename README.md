@@ -30,29 +30,31 @@ Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri l
 - Muista eri kilpailuluokkien mukaiset pistelaskusäännöt!
 
 
-## Tauluja voisivat alustavasti olla:
+## Tauluja voisivat olla:
 
-- Tulos
-	* Sijoitus
-	* Tulokseen liittyvä kilpailu
-	* Tulokseen liittyvä kilpailija
 - Kilpailu
+	* ID
 	* Nimi
 	* Päivämäärä
 	* Paikka
 	* Kilpailuun liittyvä luokka
-	* Kilpailuun liittyvät kilpailijat
 	* Kilpailuun liittyvät tulokset
 - Kilpailija
+	* ID
 	* Nimi
 	* Purjenumero
 	* Pursiseura
-	* Kilpailijaan liittyvät kilpailut
+	* Kilpailijaan liittyvät tulokset
 - Luokka
+	* ID
 	* Nimi
 	* Luokkaan liittyvät kilpailut
-- KilpailuKilpailija
-	* Liitostaulu, jossa viiteavaimet tauluista Kilpailu ja Kilpailija
+- Tulos
+	* Taulu, joka toimii samalla sekä liitostauluna taulujen Kilpailu ja Kilpailija välillä, että tulostauluna
+	* ID
+	* Tulokseen liittyvä kilpailu 
+	* Tulokseen liittyvä kilpailija
+	* Sijoitus
 
 ## Tietokantakaavio:
 ![alt text](https://github.com/tikibeni/windsurf-ranking/blob/master/kaavio.PNG?raw=true1 "Tietokantakaavio")
