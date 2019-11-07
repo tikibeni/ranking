@@ -1,11 +1,13 @@
 Viikon 45 tavoitteena saada sovellus toimimaan yhdellä tietokantataululla.
-- Toteutetaan simppelillä, "Luokka"-taululla ja pyritään** lisäämään siihen toiminnallisuudet:
-	* Lisääminen
-	* Listaaminen
-	* Muokkaaminen
-	* Poistaminen
+- Toteutetaan simppelillä, "Luokka"-taululla ja lisätään siihen lisäys ja listaus toiminnot.
 
-** Projektin haastavuus voi aiheuttaa aikatauluongelmia toiminnallisuuksien kehittämisessä. HTML ei ole tuttua ja tietokannoissa
-menee aikansa.
+Edit: Tällä hetkellä lisääminen ja listaaminen toimii.
+Seuraavana etappina on luoda mahdollisuus tiedon poistamiseen ja muokkaamiseen taulusta. Tällä hetkellä
+päivitysominaisuus ei ole oleellinen. Pohja toimii.
+
+
+
+** Projektin haastavuus voi aiheuttaa aikatauluongelmia toiminnallisuuksien kehittämisessä. HTML ei ole
+tuttua ja tietokannoissa menee aikansa.
 
 
