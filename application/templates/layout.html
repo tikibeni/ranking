@@ -7,13 +7,13 @@
 
   <body>
     <ul>
-      <li><a href="{{ url_for('tasks_index') }}">List tasks</a></li>
-      <li><a href="{{ url_for('tasks_form') }}">Add a task</a></li>
+      <li><a href="{{ url_for('luokat_index') }}"> Listaa luokat</a></li>
+      <li><a href="{{ url_for('luokat_form') }}"> Lisää luokka</a></li>
     </ul>
 
     {% block body %}
       <p>
-        Sisältö täällä.
+        Sisältö tässä välissä. Tällä hetkellä tervetuliaisviesti.
       </p>
     {% endblock %}
   </body>

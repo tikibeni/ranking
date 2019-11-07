@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Luokka</th>
+      <th></th>
+    </tr>
+    {% for luokka in luokat %}
+    <tr>
+      <td>{{ luokka.name }}</td>
+    </tr>
+    <td>
+    </td>
+    {% endfor %}
+  </table>
+{% endblock %}
+        
