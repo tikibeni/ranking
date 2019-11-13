@@ -117,4 +117,4 @@ dmypy.json
 
 # Databaset ja muut mitä löydän
 ranking.db
-/.vscode
+.vscode
