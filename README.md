@@ -2,8 +2,8 @@
 Järjestelmä purjelautailun kilpailukausien ranking-pistelaskua varten.
 
 # Herokuun:
--[Tästä](https://windsurf-ranking.herokuapp.com)
--Testitunnukset:
+- [Tästä](https://windsurf-ranking.herokuapp.com)
+- Testitunnukset:
 	* Käyttäjätunnus: admin
 	* Salasana: admin
 
