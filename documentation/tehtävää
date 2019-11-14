@@ -1,13 +1,14 @@
-Viikon 45 tavoitteena saada sovellus toimimaan yhdellä tietokantataululla.
-- Toteutetaan simppelillä, "Luokka"-taululla ja lisätään siihen lisäys ja listaus toiminnot.
-
-Edit: Tällä hetkellä lisääminen ja listaaminen toimii.
-Seuraavana etappina on luoda mahdollisuus tiedon poistamiseen ja muokkaamiseen taulusta. Tällä hetkellä
-päivitysominaisuus ei ole oleellinen. Pohja toimii.
+Tilannepäivitykset:
+-------------------
+14.11.2019: Sovellus on Herokussa ja toimii nyt tietokantataululla 'Luokka'. Myös kirjautumistoiminnallisuus
+luotu sivustolle.
 
 
 
-** Projektin haastavuus voi aiheuttaa aikatauluongelmia toiminnallisuuksien kehittämisessä. HTML ei ole
-tuttua ja tietokannoissa menee aikansa.
 
+Välitavoitteet:
+---------------
+- Tiedon muokkaaminen ja poistaminen sivustolla, esim. jos vahingossa kirjoittaa typon tai ylipäätään haluaa
+poistaa asian syystä tai toisesta.
+- Kirjautumismahdollisuus normaaleille käyttäjille
 
