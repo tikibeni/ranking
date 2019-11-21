@@ -11,7 +11,11 @@ else:
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ranking.db"
     app.config["SQLALCHEMY_ECHO"] = True
 
+# Luodaan tietokanta
+
 db = SQLAlchemy(app)
+
+# Tuodaan osat yhteen:
 
 from application import views
 

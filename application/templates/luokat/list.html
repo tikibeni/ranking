@@ -9,10 +9,21 @@
     {% for luokka in luokat %}
     <tr>
       <td>{{ luokka.name }}</td>
+      <td>
+      <div style="width:350;">
+        <div style="float: left; width: 100px"> 
+          <form method="POST" action="{{ url_for('luokat_edit', luokka_id=luokka.id) }}">
+            <input type="submit" value="Muokkaa">
+          </form>
+        </div>
+        <div style="float: right; width: 100px"> 
+            <form method="POST" action="{{ url_for('luokat_delete', luokka_id=luokka.id) }}">
+              <input type="submit" value="Poista">
+            </form>
+          </div>
+      </div>
+      </td>
     </tr>
-    <td>
-    </td>
     {% endfor %}
   </table>
 {% endblock %}
-        

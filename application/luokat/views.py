@@ -5,6 +5,10 @@ from application import app, db
 from application.luokat.models import Luokka
 from application.luokat.forms import LuokkaForm
 
+@app.route("/")
+def home():
+	return render_template("/")
+
 @app.route("/luokat", methods=["GET"])
 def luokat_index():
 	return render_template("luokat/list.html", luokat = Luokka.query.all())
@@ -28,3 +32,30 @@ def luokat_create():
 	db.session().commit()
 
 	return redirect(url_for("luokat_index"))
+
+@app.route("/luokat/delete/<luokka_id>", methods=["POST"])
+# @login_required
+def luokat_delete(luokka_id):
+	
+	luokka = Luokka.query.get(luokka_id)
+	db.session.delete(luokka)
+	db.session().commit()
+
+	return redirect(url_for("luokat_index"))
+
+@app.route("/luokat/edit/<luokka_id>", methods=["POST"])
+# @login_required
+def luokat_edit(luokka_id):
+	
+	luokka = Luokka.query.get(luokka_id)
+
+	form = LuokkaForm(request.form)
+	if request.method == "POST" and form.validate():
+		save_changes(luokka, form)
+		return redirect(url_for("luokat_index"))
+	
+	return render_template("luokat/edit.html", form=form, luokka=luokka)
+
+def save_changes(luokka, form, new=False):
+	luokka.name = form.name.data
+	db.session().commit()

@@ -8,7 +8,11 @@ luotu sivustolle.
 
 Välitavoitteet:
 ---------------
-- Tiedon muokkaaminen ja poistaminen sivustolla, esim. jos vahingossa kirjoittaa typon tai ylipäätään haluaa
-poistaa asian syystä tai toisesta.
-- Kirjautumismahdollisuus normaaleille käyttäjille
+- Täysi CRUD taululle 'luokat'
+    * Tavoitteena on luoda ensin Edit-nappula, jonka myötä syötetty luokkanimi avautuu uudelleen tekstikenttään muokattavaksi, ja jonka voi tallentaa painamalla save.
+    * Tämän jälkeen olisi optimaalista luoda Delete-toiminnallisuus Edit-toiminnallisuuden alle. Menetelmällä "Valitse listalta checkbokseihin rustaamalla, mitkä haluat poistaa, ja paina
+     delete, jonka jälkeen sovellus kysyy että haluatko varmasti poistaa nämä."
+- Kun nämä toimii, luodaan tietokantataulut 'Kilpailija', 'Kilpailu' ja niiden liitostaulu 'KilpailuKilpailija'.
+    * Kilpailu-taulu kokoaa yhteen yhteenvetokyselyllä tiedot Kilpailijasta ja Luokasta.
+- Kirjautumismahdollisuus normaaleille käyttäjille ja käyttäjäryhmien erittely. (Osassa 5)
 
