@@ -37,7 +37,8 @@ Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri l
 
 
 ## Tauluja voisivat olla:
-
+- account
+	* Käyttäjätunnukset
 - Kilpailu
 	* ID
 	* Nimi
@@ -63,4 +64,4 @@ Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri l
 	* Sijoitus
 
 ## Tietokantakaavio:
-![alt text](https://github.com/tikibeni/windsurf-ranking/blob/master/kaavio.PNG?raw=true1 "Tietokantakaavio")
+![alt text](https://github.com/tikibeni/windsurf-ranking/blob/master/documentation/kaavio.PNG "Tietokantakaavio")
