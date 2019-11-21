@@ -34,7 +34,7 @@ def luokat_create():
 	return redirect(url_for("luokat_index"))
 
 @app.route("/luokat/delete/<luokka_id>", methods=["POST"])
-# @login_required
+@login_required
 def luokat_delete(luokka_id):
 	
 	luokka = Luokka.query.get(luokka_id)
@@ -44,7 +44,7 @@ def luokat_delete(luokka_id):
 	return redirect(url_for("luokat_index"))
 
 @app.route("/luokat/edit/<luokka_id>", methods=["POST"])
-# @login_required
+@login_required
 def luokat_edit(luokka_id):
 	
 	luokka = Luokka.query.get(luokka_id)
