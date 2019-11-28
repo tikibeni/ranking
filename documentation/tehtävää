@@ -8,14 +8,13 @@ sivuja on hiottu uuteen uskoon. Eri toiminnallisuuksissa on vielä reippaasti hi
 lisäämään muita tauluja sovellukseen ja yhdistelemään niiden tietoja, jonka myötä pääsemme lähemmäksi
 päämäärää. Internetistä löytyi paljon hyödyllistä infoa.
 
+28.11.2019: Taulun 'Luokka' CRUD saatiin toimimaan hienosti. Nyt luokkia voi muokata siten, että alkuperäinen nimi näkyy muokkauskentässä. 
+Ulkoasuun tehty muutoksia - projekti etenee hienosti vaikkakin taulujen väliset yhteydet aiheuttavat hieman päänvaivaa. Aikaisempi validointiongelma saatiin korjattua.
 
 
 Välitavoitteet:
 ---------------
-- CRUDin hiominen:
-    * Painikkeiden toiminnallisuuden hiominen sekä mahdollisuus valita useita rivejä poistamista varten.
-    * Muokkauksen yhteydessä kohteen aiemman nimen näyttäminen.
-- Kun nämä toimii, luodaan tietokantataulut 'Kilpailija', 'Kilpailu' ja niiden liitostaulu 'KilpailuKilpailija'.
+- Taulut 'Kilpailija', 'Kilpailu' ja niiden liitostaulu 'KilpailuKilpailija'.
     * Kilpailu-taulu kokoaa yhteen yhteenvetokyselyllä tiedot Kilpailijasta ja Luokasta.
 - Kirjautumismahdollisuus normaaleille käyttäjille ja käyttäjäryhmien erittely. (Osassa 5)
 

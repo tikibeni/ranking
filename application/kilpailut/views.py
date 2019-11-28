@@ -13,12 +13,14 @@ def kilpailut_index():
 # Tähän liitetty luokkien tulostus sivulle:
 
 @app.route("/kilpailut/new/", methods=["GET"])
+@login_required
 def kilpailut_form():
     return render_template("kilpailut/new.html", form = KilpailuForm())
 
 # Luokka_id:n selvittäminen!
 
 @app.route("/kilpailut/", methods=["POST"])
+@login_required
 def kilpailut_create():
     form = KilpailuForm(request.form)
 

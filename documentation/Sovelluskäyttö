@@ -1,0 +1,14 @@
+# Sovelluksen käyttö
+
+- Kirjautuminen:
+  * Mahdollisuus kirjautua sisään ja ulos.
+  * Toistaiseksi vain admin-tunnukset - muut käyttäjäryhmät tulee joulukuun alussa.
+- Luokat
+  * Mahdollisuus lisätä kilpailuluokkia
+  * Mahdollisuus muokata ja poistaa kilpailuluokkia
+  * Mahdollisuus tarkastella listasta kaikkia listtyjä luokkia
+  * Tavoitteena saada muokkaus toimimaan siten, että pystyy suoraan listasta avata muokkauslaatikon, ilman että pompataan eri sivulle.
+- Kilpailut
+  * Toistaiseksi ei vielä voi lisätä kilpailuja - kehitän luokan selectfieldin toimimaan ensin.
+  * Tulee olemaan mahdollisuus täyteen CRUDiin
+  * Tämän jälkeen rakennetaan yhteys liitostauluun 'Tulos' ja tauluun 'Kilpailija', joiden myötä saadaan rakennettua sovelluksen varsinainen toiminnallisuus
