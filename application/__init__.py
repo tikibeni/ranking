@@ -11,21 +11,21 @@ else:
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ranking.db"
     app.config["SQLALCHEMY_ECHO"] = True
 
-# Luodaan tietokanta
-
 db = SQLAlchemy(app)
 
-# Tuodaan osat yhteen:
-
 from application import views
-
-from application.luokat import models
-from application.luokat import views
 
 from application.auth import models
 from application.auth import views
 
-# Sisäänkirjautuminen
+from application.luokat import models
+from application.luokat import views
+
+from application.kilpailut import models
+from application.kilpailut import views
+
+# Kirjautuminen
+
 from application.auth.models import User
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)

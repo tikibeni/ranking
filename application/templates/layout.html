@@ -21,6 +21,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('luokat_form') }} ">Lisää luokka</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('kilpailut_index') }}">Listaa kilpailut</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('kilpailut_form') }}">Lisää kilpailu</a>
+          </li>
         </ul>
         <div class="form-inline mt-2 mt-md-0">
           {% if current_user.is_authenticated %}

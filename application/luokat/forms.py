@@ -6,9 +6,3 @@ class LuokkaForm(FlaskForm):
 
 	class Meta:
 		csrf = False
-
-
-'''
-class EditForm(luokka, FlaskForm):
-	name = StringField(luokka.nimi, ", Uusi nimi:", [validators.Length(min=2, max=20)])
-'''

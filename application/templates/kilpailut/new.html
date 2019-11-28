@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<form method="POST" action="{{ url_for('kilpailut_create') }}">
+  <div class="form-group">
+    {{ form.luokka_id.label }}
+    {{ form.luokka_id }}
+  </div>
+  <div class="form-group">
+    {{ form.name.label }}
+    {{ form.name(class="form-control", placeholder="esim. yyteri-ranking") }}
+    {% for error in form.name.errors %}
+      {{ error }}
+    {% endfor %}
+  </div>
+  <div class="form-group">
+    {{ form.venue.label }}
+    {{ form.venue(class="form-control", placeholder="kilpailupaikka") }}
+    {% for error in form.venue.errors %}
+      {{ error }}
+    {% endfor %}
+  </div>
+  <div class="form-group">
+    {{ form.startdate.label }}
+    {{ form.startdate(class="form-control", placeholder="yyyy-mm-dd") }}
+    {% for error in form.startdate.errors %}
+      {{ error }}
+    {% endfor %}
+  </div>
+  <div class="form-group">
+    {{ form.enddate.label }}
+    {{ form.enddate(class="form-control", placeholder="yyyy-mm-dd")}}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Lisää kilpailu</button>
+</form>
+{% endblock %}

@@ -9,14 +9,43 @@ from application.luokat.forms import LuokkaForm
 def home():
 	return render_template("/")
 
-@app.route("/luokat", methods=["GET"])
+@app.route("/luokat/", methods=["GET"])
 def luokat_index():
 	return render_template("luokat/list.html", luokat = Luokka.query.all())
 
-@app.route("/luokat/new/")
+@app.route("/luokat/new/", methods=["GET"])
 @login_required
 def luokat_form():
 	return render_template("luokat/new.html", form = LuokkaForm())
+
+@app.route("/luokat/<luokka_id>/", methods=["GET"])
+@login_required
+def luokat_show(luokka_id):
+	luokka = Luokka.query.get(luokka_id)
+	return render_template("luokat/edit.html", luokka = luokka, form = LuokkaForm(obj=luokka))
+
+@app.route("/luokat/<luokka_id>/", methods=["POST"])
+@login_required
+def luokat_edit(luokka_id):
+	form = LuokkaForm(request.form)
+	luokka = Luokka.query.get(luokka_id)
+
+	if not form.validate():
+		return render_template("luokat/edit.html", luokka = luokka, form = form)
+	
+	luokka.name = form.name.data
+	db.session().commit()
+
+	return redirect(url_for("luokat_index"))
+
+@app.route("/luokat/delete/<luokka_id>", methods=["POST"])
+@login_required
+def luokat_delete(luokka_id):
+	luokka = Luokka.query.get(luokka_id)
+	db.session.delete(luokka)
+	db.session().commit()
+
+	return redirect(url_for("luokat_index"))
 
 @app.route("/luokat/", methods=["POST"])
 @login_required
@@ -32,30 +61,3 @@ def luokat_create():
 	db.session().commit()
 
 	return redirect(url_for("luokat_index"))
-
-@app.route("/luokat/delete/<luokka_id>", methods=["POST"])
-@login_required
-def luokat_delete(luokka_id):
-	
-	luokka = Luokka.query.get(luokka_id)
-	db.session.delete(luokka)
-	db.session().commit()
-
-	return redirect(url_for("luokat_index"))
-
-@app.route("/luokat/edit/<luokka_id>", methods=["POST"])
-@login_required
-def luokat_edit(luokka_id):
-	
-	luokka = Luokka.query.get(luokka_id)
-
-	form = LuokkaForm(request.form)
-	if request.method == "POST" and form.validate():
-		save_changes(luokka, form)
-		return redirect(url_for("luokat_index"))
-	
-	return render_template("luokat/edit.html", form=form, luokka=luokka)
-
-def save_changes(luokka, form, new=False):
-	luokka.name = form.name.data
-	db.session().commit()

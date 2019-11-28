@@ -2,25 +2,13 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('luokat_create') }}"> 
-  <tr>
-    <td>
-      {{ form.name.label }}
-    </td>
-    <td>
-      {{ form.name }}
-    </td>
-    <td>
-      <ul>
-        {% for error in form.name.errors %}
-        <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <input type="submit" value="Lisää luokka"/>
-    </td>
-  </tr>
+  <div class="form-group">
+    {{ form.name.label }}
+    {{ form.name(class="form-control", placeholder="Esim. Raceboard") }}
+    {% for error in form.name.errors %}
+      {{ error }}
+    {% endfor %}
+  </div>
+  <button type="submit" class="btn btn-primary">Lisää</button>
 </form>
 {% endblock %}
