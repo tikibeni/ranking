@@ -4,7 +4,7 @@
 <form method="POST" action="{{ url_for('luokat_create') }}"> 
   <div class="form-group">
     {{ form.name.label }}
-    {{ form.name(class="form-control", placeholder="Esim. Raceboard") }}
+    {{ form.name(class="form-control", placeholder="Luokan nimi") }}
     {% for error in form.name.errors %}
       {{ error }}
     {% endfor %}

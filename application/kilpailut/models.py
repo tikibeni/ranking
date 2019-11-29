@@ -6,9 +6,9 @@ from datetime import datetime
 class Kilpailu(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(50), nullable=False)
-	venue = db.Column(db.String(30))
-	startdate = db.Column(db.DateTime)
-	enddate = db.Column(db.DateTime)
+	venue = db.Column(db.String(30), nullable=False)
+	startdate = db.Column(db.DateTime, nullable=False)
+	enddate = db.Column(db.DateTime, nullable=False)
 	luokka_id = db.Column(db.Integer, db.ForeignKey('luokka.id'),
 		nullable=False)
 

@@ -11,6 +11,8 @@ päämäärää. Internetistä löytyi paljon hyödyllistä infoa.
 28.11.2019: Taulun 'Luokka' CRUD saatiin toimimaan hienosti. Nyt luokkia voi muokata siten, että alkuperäinen nimi näkyy muokkauskentässä. 
 Ulkoasuun tehty muutoksia - projekti etenee hienosti vaikkakin taulujen väliset yhteydet aiheuttavat hieman päänvaivaa. Aikaisempi validointiongelma saatiin korjattua.
 
+29.11.2019: Taulu 'Kilpailu' saatu toimimaan alkuun. Pitää vielä selvitellä, miten FK: luokka_id saisi toimimaan paremmin. Fiksataan seuraavassa updatessa luokan näkyminen
+numerona merkkijonoksi. Lisäksi ulkoasu-uudistuksia. Näitä hiotaan.
 
 Välitavoitteet:
 ---------------
