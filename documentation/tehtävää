@@ -14,9 +14,21 @@ Ulkoasuun tehty muutoksia - projekti etenee hienosti vaikkakin taulujen väliset
 29.11.2019: Taulu 'Kilpailu' saatu toimimaan alkuun. Pitää vielä selvitellä, miten FK: luokka_id saisi toimimaan paremmin. Fiksataan seuraavassa updatessa luokan näkyminen
 numerona merkkijonoksi. Lisäksi ulkoasu-uudistuksia. Näitä hiotaan.
 
+5.12.2019: Rekisteröintimahdollisuus lisätty, kilpailujen listaus toimii nyt hienosti kyselyjen kautta, mutta pitää vielä selvittää miten saan selectfieldin toimimaan 
+paremmin. Nyt siinä ei näy "nykyistä" luokkaa, vaan templatearvo. Lisäksi validointi menee päin mäntyä mikäli esimerkiksi syöttää muokatessa väärässä muodossa ajan.
+Pitää fiksata nuo. Lisäksi ulkoasupäivitystä.
+
+TODO:
+- Mihin tauluun taulu User liitetään?
+-> Katso toiminnallisuuksiin pohjautuen. 
+- Dokumennoinnin päivitys: 
+    * eri kohtiin ohjelmakoodia toiminnallisuuksien selittämistä   
+
+
 Välitavoitteet:
 ---------------
 - Taulut 'Kilpailija', 'Kilpailu' ja niiden liitostaulu 'KilpailuKilpailija'.
     * Kilpailu-taulu kokoaa yhteen yhteenvetokyselyllä tiedot Kilpailijasta ja Luokasta.
-- Kirjautumismahdollisuus normaaleille käyttäjille ja käyttäjäryhmien erittely. (Osassa 5)
-
+- Lisää SPECTATOR-ryhmälle jotain omia toiminnallisuuksia. Tällä hetkellä se on kuin tyhjän kanssa.
+- Fiksaa kilpailun muokkaus. Yllä tietoa tästä.
+- Validit yhteenvetokyselyt.

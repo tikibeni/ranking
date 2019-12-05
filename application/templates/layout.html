@@ -7,7 +7,7 @@
   <body>
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="{{ url_for('home') }}">Surffisovellus</a>
+          <a class="navbar-brand" href="{{ url_for('index') }}">Surffisovellus</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -17,15 +17,19 @@
           <li class="nav-item active">
             <a class="nav-link" href="{{ url_for('luokat_index') }} ">Listaa luokat</a>
           </li>
+          {% if current_user.role == 'admin' %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('luokat_form') }} ">Lisää luokka</a>
           </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('kilpailut_index') }}">Listaa kilpailut</a>
           </li>
+          {% if current_user.role == 'admin' %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('kilpailut_form') }}">Lisää kilpailu</a>
           </li>
+          {% endif %}
         </ul>
         <div class="form-inline my-2 my-lg-0">
           {% if current_user.is_authenticated %}

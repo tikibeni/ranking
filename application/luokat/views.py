@@ -6,10 +6,6 @@ from application import app, db
 from application.luokat.models import Luokka
 from application.luokat.forms import LuokkaForm
 
-@app.route("/")
-def home():
-	return render_template("/")
-
 @app.route("/luokat/", methods=["GET"])
 def luokat_index():
 	return render_template("luokat/list.html", luokat = Luokka.query.all())

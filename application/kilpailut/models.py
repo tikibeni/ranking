@@ -1,5 +1,6 @@
 from application import db
 from datetime import datetime
+from sqlalchemy import text
 
 # Lisää väliin vielä db.relationship tauluun Tulos, kun tämän taulun CRUD on toimiva.
 
@@ -18,3 +19,29 @@ class Kilpailu(db.Model):
 		self.startdate = startdate
 		self.enddate = enddate
 		self.luokka_id = luokka_id
+
+	@staticmethod
+	def tulevatKilpailut():
+		stmt = text("SELECT Luokka.name, Kilpailu.name, Kilpailu.startdate, Kilpailu.enddate FROM Kilpailu"
+					" LEFT JOIN Luokka ON Luokka.id = Kilpailu.luokka_id"
+					" WHERE Kilpailu.enddate > CURRENT_TIMESTAMP"
+					" GROUP BY Kilpailu.startdate")
+		res = db.engine.execute(stmt)
+		
+		response = []
+		for row in res:
+			response.append({"luokkanimi":row[0],"kilpailunimi":row[1], "kilpailualkupaivamaara":row[2], "kilpailuloppupaivamaara":row[3]})
+
+		return response
+
+	@staticmethod
+	def kaikkiKilpailut():
+		stmt = text("SELECT Luokka.name, Kilpailu.name, Kilpailu.venue, Kilpailu.startdate, Kilpailu.enddate, Kilpailu.id FROM Kilpailu"
+					" LEFT JOIN Luokka ON Luokka.id = Kilpailu.luokka_id")
+		res = db.engine.execute(stmt)
+
+		response = []
+		for row in res:
+			response.append({"luokkanimi":row[0],"kilpailunimi":row[1],"kilpailupaikka":row[2],"kilpailualkupaivamaara":row[3],"kilpailuloppupaivamaara":row[4],"kilpailutunnus":row[5]})
+
+		return response

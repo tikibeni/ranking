@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<form method="POST" action="{{ url_for('auth_create') }}">
+  <div class="form-group">
+      {{ form.name.label }}
+      {{ form.name(class="form-control", placeholder="Nimi") }}
+      {% for error in form.name.errors %}
+        {{ error }}
+      {% endfor %}
+  </div>
+
+  <div class ="form-group">
+      {{ form.username.label }}
+      {{ form.username(class="form-control", placeholder="Tunnus") }}
+      {% for error in form.username.errors %}
+        {{ error }}
+      {% endfor %}
+  </div>
+
+  <div class="form-group">
+      {{ form.password.label }}
+      {{ form.password(class="form-control", placeholder="Salasana") }}
+      {% for error in form.password.errors %}
+        {{ error }}
+      {% endfor %}
+  </div>
+
+  <div class="form-group">
+      {{ form.varmistaja.label }}
+      {{ form.varmistaja(class="form-control", placeholder="Salasana uudelleen") }}
+      {% for error in form.varmistaja.errors %}
+        {{ error }}
+      {% endfor %}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Luo tunnus</button>
+</form>
+
+{% endblock %}

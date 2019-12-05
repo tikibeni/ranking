@@ -12,6 +12,7 @@
       <tr>
         <td>{{ luokka.name }}</td>
         <td>
+          {% if current_user.role == 'admin' %}
           <div class="d-flex flex-row justify-content-around">
             <form method="GET" action="{{ url_for('luokat_show', luokka_id=luokka.id) }}">
               <input class="btn btn-primary" type="submit" value="Muokkaa">
@@ -20,6 +21,7 @@
               <input class="btn btn-primary" type="submit" value="Poista">
             </form>
           </div>
+          {% endif %}
         </td>
       </tr>
       {% endfor %}

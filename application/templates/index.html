@@ -1,7 +1,26 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <p>
-    Tervetuloa tarkastelemaan sovelluksen ensimmäisiä askelia!
-  </p>
+  <table class="table table-hover">
+    <thead>
+      <th>Luokka</th>
+      <th>Kilpailu</th>
+      <th>Alkaa</th>
+      <th>Loppuu</th>
+    </thead>
+    <tbody>
+      {% if tulevat_kisat is defined %}
+      
+      <h1 class="display-4 font-weight-small">Tulevat kilpailut:</h1>
+      {% for rivi in tulevat_kisat %}
+      <tr>
+        <td>{{ rivi.luokkanimi }}</td>
+        <td>{{ rivi.kilpailunimi }}</td>
+        <td>{{ rivi.kilpailualkupaivamaara }}</td>
+        <td>{{ rivi.kilpailuloppupaivamaara }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  {% endif %}
+  </table>
 {% endblock %}

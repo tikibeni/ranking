@@ -1,0 +1,25 @@
+# Käyttäjätarinat:
+
+- Kirjautuminen:
+  * Mahdollisuus kirjautua sisään ja ulos.
+    - "Kirjaudu sisään" -painikkeesta sovelluksen oikeasta yläkulmasta.
+    - "Kirjaudu ulos"-painikkeesta sovelluksen oikeasta yläkulmasta.
+  * Mahdollisuus rekisteröityä alemman tason tunnukseen. 
+    - Tämä onnistuu yrittämällä sisäänkirjautumista ja painamalla "Rekisteröidy"-painiketta.
+    - Rekisteröitymiseksi pitää syöttää oma nimi, käyttäjätunnus ja salasana.
+- Luokat
+  * Mahdollisuus lisätä kilpailuluokkia (admin)
+  * Mahdollisuus muokata ja poistaa kilpailuluokkia (admin)
+  * Mahdollisuus tarkastella listasta kaikkia listtyjä luokkia
+
+- Kilpailu
+  * Mahdollisuus lisätä kilpailuja käyttäen hyödyksi taulua 'Luokka' (admin)
+  * Mahdollisuus muokata ja poistaa kilpailuja (admin)
+  * Mahdollisuus tarkastella listaa kilpailuista.
+
+- Etusivulla on yksi tauluja vertaileva toiminnallisuus, jonka SQL-kysely on:
+    "SELECT Luokka.name, Kilpailu.name, Kilpailu.startdate, Kilpailu.enddate FROM Kilpailu"
+	    " LEFT JOIN Luokka ON Luokka.id = Kilpailu.luokka_id"
+		" WHERE Kilpailu.enddate > CURRENT_TIMESTAMP"
+		" GROUP BY Kilpailu.startdate"
+  * Näyttää tulevat kilpailut.

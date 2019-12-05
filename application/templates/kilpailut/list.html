@@ -12,25 +12,29 @@
       </tr>
     </thead>
     <tbody>
-      {% for kilpailu in kilpailut %}
+      {% if kilpailut_kaikki is defined %}
+      {% for rivi in kilpailut_kaikki %}
       <tr>
-        <td>{{ kilpailu.name }}</td>
-        <td>{{ kilpailu.venue }} </td>
-        <td>{{ kilpailu.startdate }}</td>
-        <td>{{ kilpailu.enddate }}</td>
-        <td>{{ kilpailu.luokka_id }}</td>
+        <td>{{ rivi.kilpailunimi }}</td>
+        <td>{{ rivi.kilpailupaikka }} </td>
+        <td>{{ rivi.kilpailualkupaivamaara }}</td>
+        <td>{{ rivi.kilpailuloppupaivamaara }}</td>
+        <td>{{ rivi.luokkanimi }}</td>
         <td>
+          {% if current_user.role == 'admin' %}
           <div class="d-flex flex-row justify-content-around">
-            <form method="GET" action="{{ url_for('kilpailut_show', kilpailu_id=kilpailu.id) }}">
+            <form method="GET" action="{{ url_for('kilpailut_show', kilpailu_id=rivi.kilpailutunnus) }}">
               <input class="btn btn-primary" type="submit" value="Muokkaa">
             </form>
-            <form method="POST" action="{{ url_for('kilpailut_delete', kilpailu_id=kilpailu.id) }}">
+            <form method="POST" action="{{ url_for('kilpailut_delete', kilpailu_id=rivi.kilpailutunnus) }}">
               <input class="btn btn-primary" type="submit" value="Poista">
             </form>
           </div>
+          {% endif %}
         </td>
       </tr>
       {% endfor %}
     </tbody>
+  {% endif %}
   </table>
 {% endblock %}

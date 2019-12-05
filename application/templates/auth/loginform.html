@@ -14,4 +14,13 @@
   </div>
   <button type="submit" class="btn btn-primary">Kirjaudu</button>
 </form>
+  <div class="d-flex justify-content-center links">
+    <form method="GET" action="{{ url_for('auth_form') }}">
+      <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Rekisteröidy"/>
+      </div>
+    </form>
+  </div>
+</div>
+
 {% endblock %}

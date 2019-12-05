@@ -1,6 +1,7 @@
 from flask import Flask
 app = Flask(__name__)
 
+# database connectivity and ORM
 from flask_sqlalchemy import SQLAlchemy
 
 import os
@@ -12,6 +13,8 @@ else:
     app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
+
+# Elementtien tuominen yhteen
 
 from application import views
 
@@ -26,16 +29,49 @@ from application.kilpailut import views
 
 # Kirjautuminen
 
-from application.auth.models import User
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 login_manager = LoginManager()
 login_manager.init_app(app)
 
 login_manager.login_view = "auth_login"
 login_manager.login_message = "Kirjaudu sisään käyttääksesi tätä."
+
+# Roolit
+from functools import wraps
+
+def login_required(role="admin"):
+    def wrapper(fn):
+        @wraps(fn)
+        def decorated_view(*args, **kwargs):
+            if not current_user:
+                return login_manager.unauthorized()
+
+            if not current_user.is_authenticated:
+                return login_manager.unauthorized()
+
+            unauthorized = False
+
+            if role != "admin":
+                unauthorized = True
+
+                for user_role in current_user.roles():
+                    if user_role == role:
+                        unauthorized = False
+                        break
+
+            if unauthorized:
+                return login_manager.unauthorized()
+
+            return fn(*args, **kwargs)
+        return decorated_view
+    return wrapper
+
+# Lisää kirjautumisesta
+
+from application.auth.models import User
 
 @login_manager.user_loader
 def load_user(user_id):

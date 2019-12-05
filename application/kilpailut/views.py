@@ -9,7 +9,7 @@ from application.kilpailut.forms import KilpailuForm
 
 @app.route("/kilpailut", methods=["GET"])
 def kilpailut_index():
-    return render_template("kilpailut/list.html", kilpailut = Kilpailu.query.all())
+    return render_template("kilpailut/list.html", kilpailut_kaikki = Kilpailu.kaikkiKilpailut())
 
 @app.route("/kilpailut/new/", methods=["GET"])
 @login_required
@@ -37,6 +37,8 @@ def kilpailut_create():
     db.session().commit()
 
     return redirect(url_for("kilpailut_index"))
+
+# Korjaa editistä kilpailun määritys! Nyt ei suostu hakemaan selectfieldiin suoraan tämänhetkistä luokkaa ja editoinnissa validoinnin suhteen homma kusee.
 
 @app.route("/kilpailut/<kilpailu_id>/", methods=["POST"])
 @login_required
