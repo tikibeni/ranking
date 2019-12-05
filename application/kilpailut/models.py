@@ -25,7 +25,7 @@ class Kilpailu(db.Model):
 		stmt = text("SELECT Luokka.name, Kilpailu.name, Kilpailu.startdate, Kilpailu.enddate FROM Kilpailu"
 					" LEFT JOIN Luokka ON Luokka.id = Kilpailu.luokka_id"
 					" WHERE Kilpailu.enddate > CURRENT_TIMESTAMP"
-					" GROUP BY Kilpailu.startdate")
+					" ORDER BY Kilpailu.startdate")
 		res = db.engine.execute(stmt)
 		
 		response = []
