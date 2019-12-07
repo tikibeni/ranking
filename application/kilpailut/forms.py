@@ -7,15 +7,13 @@ from wtforms.validators import DataRequired
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms import Form, StringField, DateTimeField, validators
 
-# Huom! Lisää DateTimeFieldien validointiin se, että näyttää missä formaatissa aika pitää syöttää: yyyy-mm-dd hh:mm:ss
-
 class KilpailuForm(FlaskForm):
 	name = StringField("Nimi:", [validators.Length(min=2, max=20)])
 	venue = StringField("Kilpailupaikka: ", [validators.Length(min=3, max=30)])
 	startdate = DateTimeField("Alkamispäivä: ", [validators.DataRequired(message="Syötä alkupäivämäärä muodossa: yyyy-mm-dd hh:mm:ss!")])
 	enddate = DateTimeField("Loppumispäivä: ", [validators.DataRequired(message="Syötä loppupäivämäärä muodossa: yyyy-mm-dd hh:mm:ss!")])
 	luokka_id = QuerySelectField("Luokka: ", query_factory=lambda: Luokka.query.all(), get_label='name')
-	
+
 	def validate(self):
 		if not Form.validate(self):
 			return False

@@ -15,21 +15,27 @@
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('luokat_index') }} ">Listaa luokat</a>
+            <a class="nav-link" href="{{ url_for('luokat_index') }} ">Kilpailuluokat</a>
           </li>
           {% if current_user.role == 'admin' %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('luokat_form') }} ">Lisää luokka</a>
+            <a class="nav-link" href="{{ url_for('luokat_form') }} ">Lisää kilpailuluokka</a>
           </li>
           {% endif %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('kilpailut_index') }}">Listaa kilpailut</a>
+            <a class="nav-link" href="{{ url_for('kilpailut_index') }}">Kilpailut</a>
           </li>
           {% if current_user.role == 'admin' %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('kilpailut_form') }}">Lisää kilpailu</a>
           </li>
           {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('kilpailijat_index') }}">Kilpailijat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('kilpailijat_form') }}">Lisää kilpailija</a>
+          </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
           {% if current_user.is_authenticated %}

@@ -19,8 +19,9 @@ def kilpailut_form():
 @app.route("/kilpailut/<kilpailu_id>/", methods=["GET"])
 @login_required
 def kilpailut_show(kilpailu_id):
-	kilpailu = Kilpailu.query.get(kilpailu_id)
-	return render_template("kilpailut/edit.html", kilpailu = kilpailu, form = KilpailuForm(obj=kilpailu))
+    kilpailu = Kilpailu.query.get(kilpailu_id)
+
+    return render_template("kilpailut/edit.html", form = KilpailuForm(obj=kilpailu), kilpailu=kilpailu)
 
 @app.route("/kilpailut/", methods=["POST"])
 @login_required
@@ -47,7 +48,7 @@ def kilpailut_edit(kilpailu_id):
     kilpailu = Kilpailu.query.get(kilpailu_id)
 
     if not form.validate():
-        return render_template("kilpailut/edit.html", form = form)
+        return render_template("kilpailut/edit.html", form = form, kilpailu = kilpailu)
 
     kilpailu.name = form.name.data
     kilpailu.venue = form.venue.data

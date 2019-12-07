@@ -4,7 +4,7 @@
 <form method="POST" action="{{ url_for('kilpailut_edit', kilpailu_id=kilpailu.id) }}">
   <div class="form-group">
     {{ form.luokka_id.label }}
-    {{ form.luokka_id }}
+    {{ form.luokka_id(class="form-control") }}
     {% for error in form.luokka_id.errors %}
       {{ error }}
     {% endfor %}

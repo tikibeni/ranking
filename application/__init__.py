@@ -1,7 +1,7 @@
 from flask import Flask
 app = Flask(__name__)
 
-# database connectivity and ORM
+# Tietokanta ja Heroku
 from flask_sqlalchemy import SQLAlchemy
 
 import os
@@ -15,7 +15,6 @@ else:
 db = SQLAlchemy(app)
 
 # Elementtien tuominen yhteen
-
 from application import views
 
 from application.auth import models
@@ -24,11 +23,15 @@ from application.auth import views
 from application.luokat import models
 from application.luokat import views
 
+from application.tulokset import models
+
 from application.kilpailut import models
 from application.kilpailut import views
 
-# Kirjautuminen
+from application.kilpailijat import models
+from application.kilpailijat import views
 
+# Kirjautuminen
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
@@ -42,6 +45,7 @@ login_manager.login_message = "Kirjaudu sisään käyttääksesi tätä."
 # Roolit
 from functools import wraps
 
+## Login_requiredin määrittäminen siten, että se vaatii admin-oikeudet.
 def login_required(role="admin"):
     def wrapper(fn):
         @wraps(fn)
@@ -70,7 +74,6 @@ def login_required(role="admin"):
     return wrapper
 
 # Lisää kirjautumisesta
-
 from application.auth.models import User
 
 @login_manager.user_loader

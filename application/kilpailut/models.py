@@ -2,8 +2,6 @@ from application import db
 from datetime import datetime
 from sqlalchemy import text
 
-# Lisää väliin vielä db.relationship tauluun Tulos, kun tämän taulun CRUD on toimiva.
-
 class Kilpailu(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(50), nullable=False)
@@ -12,6 +10,8 @@ class Kilpailu(db.Model):
 	enddate = db.Column(db.DateTime, nullable=False)
 	luokka_id = db.Column(db.Integer, db.ForeignKey('luokka.id'),
 		nullable=False)
+
+	kilpailijat = db.relationship('Kilpailija', secondary='liitostaulu')
 
 	def __init__(self,name,venue,startdate,enddate,luokka_id):
 		self.name = name

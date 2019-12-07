@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Purjenumero</th>
+        <th>Nimi</th>
+        <th>Pursiseura</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for kilpailija in kilpailijat %}
+      <tr>
+        <td>{{ kilpailija.sailnumber }}</td>
+        <td>{{ kilpailija.name }}</td>
+        <td>{{ kilpailija.sailclub }}</td>
+        <td>
+          {% if current_user.role == 'admin' %}
+          <div class="d-flex flex-row justify-content-around">
+            <form method="GET" action="{{ url_for('kilpailijat_show', kilpailija_id=kilpailija.id) }}">
+              <input class="btn btn-primary" type="submit" value="Muokkaa">
+            </form>
+            <form method="POST" action="{{ url_for('kilpailijat_delete', kilpailija_id=kilpailija.id) }}">
+              <input class="btn btn-primary" type="submit" value="Poista">
+            </form>
+          </div>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -17,9 +17,16 @@
   * Mahdollisuus muokata ja poistaa kilpailuja (admin)
   * Mahdollisuus tarkastella listaa kilpailuista.
 
+- Kilpailija
+  * CRUD
+- User
+
+- Tulos
+
+
 - Etusivulla on yksi tauluja vertaileva toiminnallisuus, jonka SQL-kysely on:
     "SELECT Luokka.name, Kilpailu.name, Kilpailu.startdate, Kilpailu.enddate FROM Kilpailu"
 	    " LEFT JOIN Luokka ON Luokka.id = Kilpailu.luokka_id"
 		" WHERE Kilpailu.enddate > CURRENT_TIMESTAMP"
 		" GROUP BY Kilpailu.startdate"
-  * Näyttää tulevat kilpailut.
+  * Näyttää tulevat (verrateen tämänhetkiseen päivämäärään) kilpailut.

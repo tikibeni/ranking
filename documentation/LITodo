@@ -1,4 +1,7 @@
-Tilannepäivitykset:
+...eli Log, Ideat ja Todo.
+by tikibeni
+
+Log:
 -------------------
 14.11.2019: Sovellus on Herokussa ja toimii nyt tietokantataululla 'Luokka'. Myös kirjautumistoiminnallisuus
 luotu sivustolle.
@@ -17,18 +20,34 @@ numerona merkkijonoksi. Lisäksi ulkoasu-uudistuksia. Näitä hiotaan.
 5.12.2019: Rekisteröintimahdollisuus lisätty, kilpailujen listaus toimii nyt hienosti kyselyjen kautta, mutta pitää vielä selvittää miten saan selectfieldin toimimaan 
 paremmin. Nyt siinä ei näy "nykyistä" luokkaa, vaan templatearvo. Lisäksi validointi menee päin mäntyä mikäli esimerkiksi syöttää muokatessa väärässä muodossa ajan.
 Pitää fiksata nuo. Lisäksi ulkoasupäivitystä.
+--------------
 
 TODO:
+--------------
 - Mihin tauluun taulu User liitetään?
 -> Katso toiminnallisuuksiin pohjautuen. 
 - Dokumennoinnin päivitys: 
     * eri kohtiin ohjelmakoodia toiminnallisuuksien selittämistä   
+- Yhteenvetokyselyt
+- Fiksaa kilpailun muokkaus
+--------------
 
+Ideoita:
+--------------
+- Kilpailija- ja User-taulujen välille yhteys.
+- Userille mahdollisuus lähettää pyyntö admin ryhmälle käsiteltäväksi, että "Olen tämä kilpailija - liitä kilpailija.id omaan Useriin."
+- KAIKKIIN POISTOIHIN VARMISTUSKYSYMYS tyyliin: syötä olion nimi poistaaksesi.
+- Keskustelupalsta, jotta speceilläkin jotain hyödyllistä tekemistä
+- Kilpailija voi katsoa User-profiilistaan tuloksiaan ja ylipäätään käyttäjätietojaan, josta voi muokata käyttäjätietoja.
+- Käyttäjä voi tulevien kilpailuiden tai kilpailujen kautta ennakkoilmoittautua tulevaan kilpailuun!
 
 Välitavoitteet:
 ---------------
-- Taulut 'Kilpailija', 'Kilpailu' ja niiden liitostaulu 'KilpailuKilpailija'.
-    * Kilpailu-taulu kokoaa yhteen yhteenvetokyselyllä tiedot Kilpailijasta ja Luokasta.
-- Lisää SPECTATOR-ryhmälle jotain omia toiminnallisuuksia. Tällä hetkellä se on kuin tyhjän kanssa.
-- Fiksaa kilpailun muokkaus. Yllä tietoa tästä.
-- Validit yhteenvetokyselyt.
+Kurssin sisäiset:
+- Kaikki taulut toimimaan CRUD
+    * Monesta moneen yhteys toimimaan kunnolla
+- Validit yhteenvetokyselyt
+    * Etusivulle tulostaulu alkuperäisen suunnitelman mukaisesti.
+
+Kurssin ulkopuoliset:
+- User-Kilpailija-yhteyden luominen.
