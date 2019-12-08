@@ -30,24 +30,35 @@ TODO:
     * eri kohtiin ohjelmakoodia toiminnallisuuksien selittämistä   
 - Yhteenvetokyselyt
 - Fiksaa kilpailun muokkaus
+- Fiksaa sisäänkirjautumisen redirecti.
+    * Nyt kun yrittää jotain login_required -toiminnallisuutta ilman että on kirjautunut sisäänkirjautuminen
+    -> Redirecti sisäänkirjautumiseen
+    --> Redirectaa sovelluksen etusivulle sen sijaan, että alun perin haluttuun toiminnallisuuteen.
 --------------
 
 Ideoita:
 --------------
+Kurssinaikaiset:
 - Kilpailija- ja User-taulujen välille yhteys.
 - Userille mahdollisuus lähettää pyyntö admin ryhmälle käsiteltäväksi, että "Olen tämä kilpailija - liitä kilpailija.id omaan Useriin."
 - KAIKKIIN POISTOIHIN VARMISTUSKYSYMYS tyyliin: syötä olion nimi poistaaksesi.
-- Keskustelupalsta, jotta speceilläkin jotain hyödyllistä tekemistä
-- Kilpailija voi katsoa User-profiilistaan tuloksiaan ja ylipäätään käyttäjätietojaan, josta voi muokata käyttäjätietoja.
+
+Kurssin ulkopuoliset:
 - Käyttäjä voi tulevien kilpailuiden tai kilpailujen kautta ennakkoilmoittautua tulevaan kilpailuun!
+- Kilpailija voi katsoa User-profiilistaan tuloksiaan ja ylipäätään käyttäjätietojaan, josta voi muokata käyttäjätietoja.
+- Keskustelupalsta tms., jotta speceilläkin jotain hyödyllistä tekemistä
 
 Välitavoitteet:
 ---------------
 Kurssin sisäiset:
 - Kaikki taulut toimimaan CRUD
     * Monesta moneen yhteys toimimaan kunnolla
+        - Tulokset-sivu
+            * Kokoaa yhteen taulut kilpailija ja kilpailu
+            * Mahdollisuus luoda sortable dynaaminen tulostaulu (voi lisätä kilpailijoita (rivilkm) ja lähtöjä (sarakelkm))
+            * Taulun yläreunassa kilpailun nimi, paikka, päivämäärät ja osallistujamäärä
+            * Taulun rivit koostuvat: sijoitus, purjenumero, nimi, pursiseura ja max 20 lähdön sijoitukset
+            * Sarakkeet ovat siis: sijoitus, purjenumero, nimi, pursiseura, lisättävä määrä lähtöjä ja niiden sijoitukset.
 - Validit yhteenvetokyselyt
-    * Etusivulle tulostaulu alkuperäisen suunnitelman mukaisesti.
-
-Kurssin ulkopuoliset:
-- User-Kilpailija-yhteyden luominen.
+    * Etusivulle viimeisimmän kilpailun tulostaulu
+        - Luokkakohtaisesti viimeisimmät?

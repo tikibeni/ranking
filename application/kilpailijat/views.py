@@ -1,8 +1,7 @@
 from flask import render_template, request, redirect, url_for
+from flask_login import current_user
 
-from flask_login import login_required
-
-from application import app, db
+from application import app, db, login_manager, login_required
 from application.kilpailijat.models import Kilpailija
 from application.kilpailijat.forms import KilpailijaForm
 
@@ -13,20 +12,20 @@ def kilpailijat_index():
 
 # Haetaan lomake uuden kilpailijan luomista varten new.html:ään
 @app.route("/kilpailijat/new/", methods=["GET"])
-@login_required
+@login_required(role="admin")
 def kilpailijat_form():
     return render_template("kilpailijat/new.html", form=KilpailijaForm())
 
 # Haetaan muokattava kilpailija id:n avulla muokkaamista varten edit.html:ään
 @app.route("/kilpailijat/<kilpailija_id>/", methods=["GET"])
-@login_required
+@login_required(role="admin")
 def kilpailijat_show(kilpailija_id):
     kilpailija = Kilpailija.query.get(kilpailija_id)
     return render_template("kilpailijat/edit.html", kilpailija=kilpailija, form=KilpailijaForm(obj=kilpailija))
 
 # Haetaan syötetyt tiedot lomakkeesta Kilpailija-olion luomista varten
 @app.route("/kilpailijat/", methods=["POST"])
-@login_required
+@login_required(role="admin")
 def kilpailijat_create():
     form = KilpailijaForm(request.form)
 
@@ -42,7 +41,7 @@ def kilpailijat_create():
 
 # Käsitellään lomakkeeseen laitetut tiedot ja muokataan kilpailijan tietoja
 @app.route("/kilpailijat/<kilpailija_id>/", methods=["POST"])
-@login_required
+@login_required(role="admin")
 def kilpailijat_edit(kilpailija_id):
     form = KilpailijaForm(request.form)
     kilpailija = Kilpailija.query.get(kilpailija_id)
@@ -60,7 +59,7 @@ def kilpailijat_edit(kilpailija_id):
 
 # Poistetaan kilpailja sen id:n perusteella
 @app.route("/kilpailjat/delete/<kilpailija_id>", methods=["POST"])
-@login_required
+@login_required(role="admin")
 def kilpailijat_delete(kilpailija_id):
     kilpailija = Kilpailija.query.get(kilpailija_id)
     db.session().delete(kilpailija)

@@ -5,6 +5,7 @@ from application import app, db
 from application.auth.models import User
 from application.auth.forms import LoginForm, RegisterForm
 
+# Sisäänkirjautuminen
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
     if request.method == "GET":
@@ -20,15 +21,18 @@ def auth_login():
     login_user(user)
     return redirect(url_for("index"))
 
+# Uloskirjautuminen
 @app.route("/auth/logout")
 def auth_logout():
     logout_user()
     return redirect(url_for("index"))
 
+# Lomake rekisteröintiä varten
 @app.route("/auth/new/", methods=["GET"])
 def auth_form():
     return render_template("auth/registerform.html", form = RegisterForm())
 
+# Rekisteröinnin suorittaminen
 @app.route("/auth/", methods = ["POST"])
 def auth_create():
     form = RegisterForm(request.form)
