@@ -66,7 +66,7 @@ Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri l
 	* Sijoitus
 
 ## Tietokantakaavio:
-![alt text](https://github.com/tikibeni/windsurf-ranking/blob/master/documentation/kaavio.png "Tietokantakaavio")
+![alt text](https://github.com/tikibeni/windsurf-ranking/blob/master/documentation/tsohakaavio.png "Tietokantakaavio")
 
 # Ohjelman lataaminen?
 - Voit ladata ohjelman omalle koneellesi GitHubin "Clone or download"-painikkeesta, josta saat ladattua .zip-tiedoston "Download ZIP"-painikkeesta.
