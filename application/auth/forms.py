@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, validators
 
+# Lomake kirjautumista varten
 class LoginForm(FlaskForm):
 	username = StringField("Käyttäjätunnus")
 	password = PasswordField("Salasana")
@@ -8,6 +9,7 @@ class LoginForm(FlaskForm):
 	class Meta:
 		csrf = False
 
+# Lomake rekisteröintiä varten
 class RegisterForm(FlaskForm):
 	name = StringField("Nimi: ", [validators.Length(min=2, max=30)])
 	username = StringField("Käyttäjätunnus: ", [validators.Length(min=2, max=20)])

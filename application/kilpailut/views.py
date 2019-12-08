@@ -22,7 +22,6 @@ def kilpailut_form():
 @login_required(role="admin")
 def kilpailut_show(kilpailu_id):
     kilpailu = Kilpailu.query.get(kilpailu_id)
-
     return render_template("kilpailut/edit.html", form = KilpailuForm(obj=kilpailu), kilpailu=kilpailu)
 
 # Uuden kilpailun tietojen ottaminen lomakkeesta ja syöttäminen tietokantaan
@@ -68,7 +67,7 @@ def kilpailut_edit(kilpailu_id):
 @login_required(role="admin")
 def kilpailut_delete(kilpailu_id):
 	kilpailu = Kilpailu.query.get(kilpailu_id)
-	db.session.delete(kilpailu)
+	db.session().delete(kilpailu)
 	db.session().commit()
 
 	return redirect(url_for("kilpailut_index"))

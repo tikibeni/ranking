@@ -65,4 +65,4 @@ def kilpailijat_delete(kilpailija_id):
     db.session().delete(kilpailija)
     db.session().commit()
 
-    return redirect(url_for("kilpailut_index"))
+    return redirect(url_for("kilpailijat_index"))

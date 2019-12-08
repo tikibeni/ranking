@@ -55,8 +55,6 @@ def login_required(role="ANY"):
         return decorated_view
     return wrapper
 
-
-
 # Elementtien tuominen yhteen
 from application import views
 
@@ -64,6 +62,7 @@ from application.luokat import models
 from application.luokat import views
 
 from application.tulokset import models
+from application.tulokset import views
 
 from application.kilpailut import models
 from application.kilpailut import views

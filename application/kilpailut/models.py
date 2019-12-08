@@ -2,6 +2,7 @@ from application import db
 from datetime import datetime
 from sqlalchemy import text
 
+# Kilpailu-taulun luominen
 class Kilpailu(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(50), nullable=False)
@@ -20,6 +21,7 @@ class Kilpailu(db.Model):
 		self.enddate = enddate
 		self.luokka_id = luokka_id
 
+	# Metodi tulevien kilpailujen hakua varten -> Etusivulle
 	@staticmethod
 	def tulevatKilpailut():
 		stmt = text("SELECT Luokka.name, Kilpailu.name, Kilpailu.startdate, Kilpailu.enddate FROM Kilpailu"
@@ -33,7 +35,8 @@ class Kilpailu(db.Model):
 			response.append({"luokkanimi":row[0],"kilpailunimi":row[1], "kilpailualkupaivamaara":row[2], "kilpailuloppupaivamaara":row[3]})
 
 		return response
-
+	
+	# Metodi kilpailujen hakemista varten, johon liitetty tieto luokan nimestä -> Kilpailut-sivulle
 	@staticmethod
 	def kaikkiKilpailut():
 		stmt = text("SELECT Luokka.name, Kilpailu.name, Kilpailu.venue, Kilpailu.startdate, Kilpailu.enddate, Kilpailu.id FROM Kilpailu"

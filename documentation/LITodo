@@ -22,43 +22,75 @@ paremmin. Nyt siinä ei näy "nykyistä" luokkaa, vaan templatearvo. Lisäksi va
 Pitää fiksata nuo. Lisäksi ulkoasupäivitystä.
 --------------
 
-TODO:
+TODO (priojärj.):
 --------------
-- Mihin tauluun taulu User liitetään?
--> Katso toiminnallisuuksiin pohjautuen. 
-- Dokumennoinnin päivitys: 
-    * eri kohtiin ohjelmakoodia toiminnallisuuksien selittämistä   
-- Yhteenvetokyselyt
-- Fiksaa kilpailun muokkaus
-- Fiksaa sisäänkirjautumisen redirecti.
-    * Nyt kun yrittää jotain login_required -toiminnallisuutta ilman että on kirjautunut sisäänkirjautuminen
-    -> Redirecti sisäänkirjautumiseen
-    --> Redirectaa sovelluksen etusivulle sen sijaan, että alun perin haluttuun toiminnallisuuteen.
+1. Tulostaulun toiminnallisuus
+    * Tulostaulukon pitää saada reitin kautta: kilpailuolio, kilpailijaolio sekä kilpailijan sijoitus
+2. Yhteenvetokyselyt esim. etusivulle
+3. Userin liittäminen tauluun Kilpailija
+4. Toiminnallisuuksien hiominen / korjaaminen
+    - KilpailuForm validointiviesti päivämäärät
+    - Kilpailun muokkaus, SelectField lähtöarvo
+    - Sisäänkirjautumisen index-redirect
+    - Poistamisiin liittyvä varmistaja
+    - Resisteröintiin liittyvä varmistaja: ettei voi tehdä kahta samanlaista käyttäjätunnusta
+    - Rekisteröintiin liittyvä onnistumisviesti
+    - Tulostaulun CRUD loppuun
+    - Tulostaulun validointi!!!
+        * Sijoitus
+5. Käyttäjänhallintasivu
+    - Moderaattorioikeudet?
+    - CRUD, josta voi poistaa käyttäjiä, ja muokata niiden tietoja.
+6. Dokumennoinnin ylläpito: 
+    * Toiminnallisuuksiin yleisesti
+    * Readme kurssiohjeiden mukaiseksi
+    * Tietokantakaavio realistiseksi
+7. Ulkoasun parantelu surffityyliseksi ennen dedistä
+    - Lisäksi pitää saada Kirjaudu sisään -painike dropdown valikon sisään.
+    - Katso sovellusta pienemmällä ruudulla, niin huomaat.
 --------------
 
 Ideoita:
 --------------
-Kurssinaikaiset:
+Kurssin aikaiset:
 - Kilpailija- ja User-taulujen välille yhteys.
 - Userille mahdollisuus lähettää pyyntö admin ryhmälle käsiteltäväksi, että "Olen tämä kilpailija - liitä kilpailija.id omaan Useriin."
 - KAIKKIIN POISTOIHIN VARMISTUSKYSYMYS tyyliin: syötä olion nimi poistaaksesi.
+- Adminille oma käyttäjienhallintasivu, mistä voi poistaa tai muokata käyttäjätietoja
 
 Kurssin ulkopuoliset:
-- Käyttäjä voi tulevien kilpailuiden tai kilpailujen kautta ennakkoilmoittautua tulevaan kilpailuun!
+- Kilpailun tulos-painike näkyviin vasta, kun nykyinen päivämäärä on vähintään sama kuin kilpailun alkupäivämäärä
 - Kilpailija voi katsoa User-profiilistaan tuloksiaan ja ylipäätään käyttäjätietojaan, josta voi muokata käyttäjätietoja.
+- Tuloslistan toimiminen siten, että se perustuu ajettuihin lähtöihin ja pistelaskusääntöihin (JavaScript)
+    * Taulu 'Lähtö' ja sen linkitys nykyiseen ketjuun
+    * Pistelaskusäännöt(discardit, tasapistetilanteet), erilaiset lähtötulokset(integer, DNF, DNS, DSQ jne.)
+    * Huomioi, ettei kilpailun lähtöjen määrää voida tietää etukäteen
+- Käyttäjä voi tulevien kilpailuiden tai kilpailujen kautta ennakkoilmoittautua tulevaan kilpailuun!
 - Keskustelupalsta tms., jotta speceilläkin jotain hyödyllistä tekemistä
+
+---------------
 
 Välitavoitteet:
 ---------------
-Kurssin sisäiset:
+Kurssin aikaiset:
 - Kaikki taulut toimimaan CRUD
     * Monesta moneen yhteys toimimaan kunnolla
         - Tulokset-sivu
+            * Koska kilpailuja tulee paljon, niin tarvitsee sivun, jossa listattuna kaikki olemassaolevat kilpailut
+                - Toimii linkkinä kilpailun tuloksiin
+                    -> Toisin sanoen kilpailut/list.htmlään toiminnallisuus, jossa kilpailun nimen kohdalla linkki tuloksiin!!
+                    --> Tulostaulukolle oma html
+                - Kullekin kilpailulle oma tulostaulukko
             * Kokoaa yhteen taulut kilpailija ja kilpailu
             * Mahdollisuus luoda sortable dynaaminen tulostaulu (voi lisätä kilpailijoita (rivilkm) ja lähtöjä (sarakelkm))
             * Taulun yläreunassa kilpailun nimi, paikka, päivämäärät ja osallistujamäärä
-            * Taulun rivit koostuvat: sijoitus, purjenumero, nimi, pursiseura ja max 20 lähdön sijoitukset
-            * Sarakkeet ovat siis: sijoitus, purjenumero, nimi, pursiseura, lisättävä määrä lähtöjä ja niiden sijoitukset.
+            * Taulun rivit koostuvat kilpailijoista ja heidän sijoituksista + yhteispisteistä
+            * Sarakkeet ovat siis: sijoitus, purjenumero, nimi, pursiseura, lisättävä määrä lähtöjä ja niiden sijoitukset + yhteispisteet, jonka mukaan sijoitus.
 - Validit yhteenvetokyselyt
     * Etusivulle viimeisimmän kilpailun tulostaulu
         - Luokkakohtaisesti viimeisimmät?
+
+Kurssin jälkeen:
+- Tulokset
+    * Sarakkeellisesti dynaaminen taulukko, joka perustuu ajettuihin lähtöihin.
+    * Pistelaskusäännöt ja lähtötulosten variaatiot

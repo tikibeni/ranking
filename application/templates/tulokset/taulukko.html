@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<!-- Tämä taulukko vaatii siis: Kilpailun tiedot ja kilpailijakohtaiset sijoitukset pistemäärineen.-->
+
+  <table class="table table-hover table-dark">
+
+    <!-- SARAKKEET -->
+
+    <thead>
+      <tr>
+        <th scope="col">Sija</th>
+        <th scope="col">Purjenumero</th>
+        <th scope="col">Nimi</th>
+        <th scope="col">Pursiseura</th>
+        <th scope="col">Pisteet</th>
+      </tr>
+    </thead>
+
+    <!-- RIVIT -->
+
+    <tbody>
+      {% if kilpailun_Tulokset is defined %}
+      {% for rivi in kilpailun_Tulokset %}
+      <tr>
+        <th scope="row">{{ rivi.sijoitus }}</th>
+        <td>{{ rivi.purjenumero }}</td>
+        <td>{{ rivi.nimi }}</td>
+        <td>{{ rivi.pursiseura }}</td>
+        <td>{{ rivi.pisteet }}</td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock %}

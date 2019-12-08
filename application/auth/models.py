@@ -1,5 +1,6 @@
 from application import db
 
+# Käyttäjätaulu
 class User(db.Model):
 
 	__tablename__ = "account"
