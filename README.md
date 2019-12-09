@@ -4,29 +4,21 @@ Järjestelmä purjelautailun kilpailukausien ranking-pistelaskua varten.
 # Herokuun:
 - [Tästä](https://windsurf-ranking.herokuapp.com)
 - Testitunnukset:
-	* Käyttäjätunnus (admin-oikeuksilla): admin
+	* Admin-oikeuksilla: 
+		- Tunnus: admin
 	    - Salasana: admin
-	* Käyttäjätunnus (spectator-oikeuksilla): testi
+	* Spectator-oikeuksilla: 
+		- Tunnus: testi
 	    - Salasana: testi
 - Mahdollisuutena myös rekisteröityä spectator-oikeus-käyttäjäksi.
 
 ## Taustatietona: 
 Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri lautaluokassa. Kaudessa on aina noin 4-5 "ranking"-kilpailua per luokka, joista muodostetaan kauden parhaat kilpailijat muutaman pistelaskusäännön pohjalta. Ongelmana on, että tällä hetkellä lajiliitolla ei ole mitään järjestelmää/ohjelmaa/taulukkoa, mihin he varastoisivat näitä pisteitä, vaan esimerkiksi tällä kaudella meikäläinen kaivoi kaikkien (oman lautaluokan) kilpailijoiden sijoitukset ja laskin pisteet manuaalisesti. Näinpä ideana olisi toteuttaa järjestelmä, jonka avulla voitaisiin laskea useiden kymmenien kilpailijoiden luokkakohtaisia tuloksia läpi kauden syöttämällä kilpailu- ja kilpailijatiedot järjestelmään.
 
-## Halutut toiminnallisuudet:
-- Kausi- ja luokkakohtaiset pistetaulukot kilpailijoista
-- Admin pystyy muokkaamaan kaikkien taulujen sisältöä
-	* Kilpailujen, tulosten, kilpailijoiden ja luokkien lisääminen, muokkaaminen ja poistaminen
-- Pystyy hakea halutun kauden tulokset yhteenvetokyselyiden avulla
-- Pystyy hakemaan kaikki kilpailijat luokkaa kohden
-	* Kilpailija liittyy luokkaan mikäli tämä on osallistunut kyseisen luokan kilpailuun haetulla kaudella.
+## Päivityksistä, pohtimisia, ideoita, tehtävää:
+(https://github.com/tikibeni/windsurf-ranking/blob/master/documentation/LITodo)
 
-## Lisätoiminnallisuuksia, idealista:
-- Mahdollisuus laittaa korjauspyyntö säpöön / admin-tunnukselle
-- Kilpailijan oma kirjautuminen, jonka myötä näkee omat tulokset
-- Kilpailijoiden välineet
-
-## Huomioita:
+## Yhteyksistä:
 - Luokkaan liittyy useampi kilpailu
 - Kilpailuun liittyy yksi luokka
 - Kilpailuun liittyy useampi, kilpailijakohtainen tulos
@@ -35,11 +27,8 @@ Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri l
 - Tulokseen liittyy yksi kilpailija
 - Kilpailijaan voi liittyä useampi tulos
 
-- Muista eri kilpailuluokkien mukaiset pistelaskusäännöt!
-
-
-## Tauluja voisivat olla:
-- account
+## Taulut:
+- User
 	* Käyttäjätunnukset
 - Kilpailu
 	* ID

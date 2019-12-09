@@ -18,15 +18,28 @@
   * Mahdollisuus tarkastella listaa kilpailuista.
 
 - Kilpailija
-  * CRUD
+  * Mahdollisuus lisätä, muokata ja poistaa kilpailijoita (admin)
+
 - User
+  * Käyttäjäryhmät admin ja spectator
 
 - Tulos
+  * Mahdollisuus luoda tulostauluja kilpailu- ja kilpailijakohtaisesti
 
 
 - Etusivulla on yksi tauluja vertaileva toiminnallisuus, jonka SQL-kysely on:
+
     "SELECT Luokka.name, Kilpailu.name, Kilpailu.startdate, Kilpailu.enddate FROM Kilpailu"
 	    " LEFT JOIN Luokka ON Luokka.id = Kilpailu.luokka_id"
 		" WHERE Kilpailu.enddate > CURRENT_TIMESTAMP"
 		" GROUP BY Kilpailu.startdate"
+
   * Näyttää tulevat (verrateen tämänhetkiseen päivämäärään) kilpailut.
+
+- Tulosten kokoava kysely on tämä:
+
+  "SELECT liitostaulu.sijoitus, Kilpailija.sailnumber, Kilpailija.name, Kilpailija.sailclub, liitostaulu.pisteet FROM liitostaulu"
+    " JOIN Kilpailija ON Kilpailija.id = liitostaulu.kilpailija_id"
+    " JOIN Kilpailu ON Kilpailu.id = liitostaulu.kilpailu_id"
+    " WHERE liitostaulu.kilpailu_id = :iidee"
+    " ORDER BY liitostaulu.sijoitus"
