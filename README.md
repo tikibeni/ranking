@@ -1,5 +1,7 @@
 # windsurf-ranking
 Järjestelmä purjelautailun kilpailukausien ranking-pistelaskua varten.
+Huom! Kurssin aikana pienennetty siten, että järjestelmä toimii pohjana kilpailuiden, niiden tulosten, luokkien ja kilpailijoiden luomiselle.
+Varsinainen ranking-pistelaskuosuus tulee ohjelmaan myöhemmin.
 
 # Herokuun:
 - [Tästä](https://windsurf-ranking.herokuapp.com)

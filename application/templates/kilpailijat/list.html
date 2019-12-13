@@ -12,6 +12,7 @@
     <tbody>
       {% for kilpailija in kilpailijat %}
       <tr>
+
         <td>{{ kilpailija.sailnumber }}</td>
         <td>{{ kilpailija.name }}</td>
         <td>{{ kilpailija.sailclub }}</td>
@@ -25,25 +26,27 @@
               <input class="btn btn-primary" type="submit" value="Poista">
             </form>
           {% endif %}
+          
           {% if current_user.rooli_id == 2 %}
             {% if current_user.kilpailija_id == None %}
-              {% if kilpailijaLinkki is defined %}
+              {% if kilpailijaLinkki|length %}
                 {% for liitos in kilpailijaLinkki %}
-                  {% if liitos.kilpid != kilpailija.id %}
-                  <form method="POST" action="{{ url_for('auth_connect', kilpailija_id=kilpailija.id) }}">
-                    <input class="btn btn-primary" type="submit" value="Liitä käyttäjääsi">
-                  </form>
+                  {% if liitos.kaytkilpid != kilpailija.id %}
+                    <form method="POST" action="{{ url_for('auth_connect', kilpailija_id=kilpailija.id) }}">
+                      <input class="btn btn-primary" type="submit" value="Liitä käyttäjääsi">
+                    </form>
                   {% endif %}
                 {% endfor %}
               {% else %}
-              <form method="POST" action="{{ url_for('auth_connect', kilpailija_id=kilpailija.id) }}">
-                <input class="btn btn-primary" type="submit" value="Liitä käyttäjääsi">
-              </form>
+                <form method="POST" action="{{ url_for('auth_connect', kilpailija_id=kilpailija.id) }}">
+                  <input class="btn btn-primary" type="submit" value="Liitä käyttäjääsi">
+                </form>
               {% endif %}
             {% endif %}
           {% endif %}
           </div>  
         </td>
+
       </tr>
       {% endfor %}
     </tbody>

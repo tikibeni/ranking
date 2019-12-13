@@ -55,12 +55,13 @@ class User(db.Model):
 	# Metodi kilpailijat list.html varten, jottei samaa kilpailijaa voida liittää useampaan käyttäjään
 	@staticmethod
 	def kilpailijaLinkki():
-		stmt = text("SELECT kilpailija.id FROM Kilpailija"
-					" JOIN account ON account.kilpailija_id = Kilpailija.id")
+		stmt = text("SELECT account.kilpailija_id FROM account"
+					" LEFT JOIN Kilpailija ON Kilpailija.id = account.kilpailija_id"
+					" WHERE account.kilpailija_id")
 		res = db.engine.execute(stmt)
 
 		response = []
 		for row in res:
-			response.append({"kilpid":row[0]})
+			response.append({"kaytkilpid":row[0]})
 
 		return response
