@@ -20,7 +20,7 @@ seuraavassa updatessa luokan näkyminen numerona merkkijonoksi. Lisäksi ulkoasu
 saan selectfieldin toimimaan paremmin. Nyt siinä ei näy "nykyistä" luokkaa, vaan templatearvo. Lisäksi validointi menee päin mäntyä mikäli 
 esimerkiksi syöttää muokatessa väärässä muodossa ajan. Pitää fiksata nuo. Lisäksi ulkoasupäivitystä.
 
-13.12.2019(Tsohan viimeinen päivä): Useita toiminnallisuuksia lisätty (roolit, käyttäjä-kilpailija-yhteys, käyttäjänhallintasivu). Yhteys 
+13.12.2019 (Tsohan viimeinen päivä): Useita toiminnallisuuksia lisätty (roolit, käyttäjä-kilpailija-yhteys, käyttäjänhallintasivu). Yhteys 
 luotu käyttäjätunnuksen ja kilpailijan välille, jotta kilpailija-roolin omistava tunnus voi liittää kilpailija-olion omaan tunnukseensa 
 (account.kilpailija_id). Validointeja lisätty sinne tänne. 
 --------------
@@ -58,12 +58,7 @@ TODO (priojärj.):
         * Sisäänkirjautumisen redirect toimimaan järkevästi -> Ei aina index.htmlään
         * Validointi:
             - Rekisteröintiin liittyvä validaattori: ettei voi tehdä kahta samanlaista käyttäjätunnusta
-3. Dokumennoinnin ylläpito: 
-    * Käyttäjätarinat ja niiden SQL-kyselyt ajan tasalle!
-    * Readme kurssiohjeiden mukaiseksi
-        - Asennusohje
-        - Käyttöohje
-4. Ulkoasun parantelu
+3. Ulkoasun parantelu
     - Kirjautumisvirheen viestin näyttäminen jotenkin hienommin!
     - Rekisteröinnin onnistumisessa onnistumisviesti
     - Yleinen hiominen
@@ -84,8 +79,3 @@ Kurssin ulkopuoliset:
 - Kilpailijan välineet?
 
 ---------------
-
-Välitavoitteet:
----------------
-- Validit yhteenvetokyselyt
-- Viimeiset hiomiset mitä ehtii

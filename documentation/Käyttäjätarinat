@@ -8,6 +8,7 @@
   * Mahdollisuus rekisteröityä alemman tason tunnukseen. 
     - Tämä onnistuu yrittämällä sisäänkirjautumista ja painamalla "Rekisteröidy"-painiketta.
     - Rekisteröitymiseksi pitää syöttää oma nimi, käyttäjätunnus ja salasana.
+
 - Luokat
   * Mahdollisuus lisätä kilpailuluokkia (admin)
   * Mahdollisuus muokata ja poistaa kilpailuluokkia (admin)
@@ -32,6 +33,8 @@
 - User
   * Käyttäjäryhmät admin, kilpailija, spectator
   * Adminilla oikeudet kaikkeen, kilpailijalla oikeus liittää kilpailija-olio itseensä, spectator voi tarkastella
+  * Adminilla myös omat käyttäjänhallintasivut, josta voi muokata muita käyttäjiä. Huom! Ei voi poistaa itseään.
+  * Uuden käyttäjän rekisteröityessä admin voi muuttaa roolin kilpailijaksi tai adminiksi, mikäli tarve vaatii.
 
 - Etusivu
   * Näyttää tulevat kilpailut
@@ -104,21 +107,47 @@ joten ohjelma haki kaikkien käyttäjien yksilölliset roolit selectfieldiin.
 
 - Muut:
   * Näyttää tulevat kilpailut:
+
     "SELECT Luokka.name, Kilpailu.name, Kilpailu.startdate, Kilpailu.enddate FROM Kilpailu"
 	    " LEFT JOIN Luokka ON Luokka.id = Kilpailu.luokka_id"
 		" WHERE Kilpailu.enddate > CURRENT_TIMESTAMP"
 		" GROUP BY Kilpailu.startdate"
 
-  * Tulosten kokoava kysely on tämä:
+  * Hakee kaikki kilpailut kilpailusivulle:
+
+    "SELECT Luokka.name, Kilpailu.name, Kilpailu.venue, Kilpailu.startdate, Kilpailu.enddate, Kilpailu.id FROM Kilpailu"
+				" LEFT JOIN Luokka ON Luokka.id = Kilpailu.luokka_id"
+
+  * Tulosten kokoava kysely taulukko.html:ään on tämä:
+
     "SELECT liitostaulu.sijoitus, Kilpailija.sailnumber, Kilpailija.name, Kilpailija.sailclub, liitostaulu.pisteet FROM liitostaulu"
       " JOIN Kilpailija ON Kilpailija.id = liitostaulu.kilpailija_id"
       " JOIN Kilpailu ON Kilpailu.id = liitostaulu.kilpailu_id"
       " WHERE liitostaulu.kilpailu_id = :iidee"
       " ORDER BY liitostaulu.sijoitus"
 
-## Tekemättä jääneet toiminnot:
-- Tulostaulun(yksittäisen kilpailun siis) validointi siten, ettei samaan tauluun voi lisätä kahta samaa kilpailijaa
-- Kaikkien QuerySelectFieldien edit-toiminnallisuuden oletusarvo. Nyt mikään niistä ei näytä nyt muokattavaa arvoa automaattisesti.
-- Käyttäjätunnuksen tietojen muokkaus pienemmillä rooleilla kuin admin
+  * Tietoja käyttäjänhallintasivua varten:
 
+    "SELECT account.id, account.username, account.name, Rooli.name, Kilpailija.name, account.date_created, account.date_modified"
+			" FROM account"
+			" LEFT JOIN Rooli ON Rooli.id = account.rooli_id"
+			" LEFT JOIN Kilpailija ON Kilpailija.id = account.kilpailija_id"
+  
+  * Kilpailijat list.html varten kysely, joka tarkistaa onko kilpailija yhdistetty jo käyttäjään:
+
+    "SELECT kilpailija.id FROM Kilpailija"
+			" JOIN account ON account.kilpailija_id = Kilpailija.id"
+
+  * Yleisesti sqlalchemyn .query.all() hakee kaikki tiedot taulusta formaatilla:
+    "SELECT * FROM <taulu>"
+    - Ja ne, missä haetaan .query.get(id) tms.
+    "SELECT * FROM <taulu>
+      WHERE <taulu.id> = <id>"
+
+
+## Tekemättä jääneet toiminnot:
+- Järkevät yhteenvetokyselyt
+- Tulostaulun(yksittäisen kilpailun siis) validointi siten, ettei samaan tauluun voi lisätä kahta samaa kilpailijaa
+- Kaikkien QuerySelectFieldien edit-toiminnallisuuden oletusarvo. Nyt mikään niistä ei näytä tämänhetkistä muokattavaa arvoa automaattisesti.
+- Käyttäjätunnuksen tietojen muokkaus pienemmillä rooleilla kuin admin
 - Näistä lisää tiedostossa LITodo
