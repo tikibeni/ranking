@@ -9,6 +9,12 @@
     - Tämä onnistuu yrittämällä sisäänkirjautumista ja painamalla "Rekisteröidy"-painiketta.
     - Rekisteröitymiseksi pitää syöttää oma nimi, käyttäjätunnus ja salasana.
 
+- Käyttäjäryhmät:
+	* Admin		- CRUD-oikeudet
+	* Kilpailija- Pystyy lisäämään ja poistamaan kilpailija-olion itseensä /itsestään
+	* spectator - Pystyy katsomaan tuloksia.
+	* Admin pystyy vaihtamaan muiden käyttäjäryhmää, joten kaikki uudet rekisteröidyt käyttäjät ovat spectator-oikeuden omaavia
+
 - Luokat
   * Mahdollisuus lisätä kilpailuluokkia (admin)
   * Mahdollisuus muokata ja poistaa kilpailuluokkia (admin)
@@ -41,6 +47,13 @@
   * Tervehtii käyttäjää 
   * Ilmoittaa kilpailija-roolin omaavalle käyttäjälle linkitetyn kilpailija-olion ja jos ei ole linkitetty niin ehdottaa linkittämistä
 
+## Tekemättä jääneet toiminnot:
+- Järkevät yhteenvetokyselyt.
+- Tulostaulun(yksittäisen kilpailun siis) validointi siten, ettei samaan tauluun voi lisätä kahta samaa kilpailijaa
+- Rekisteröinnin validointi siten, ettei kahta samannimistä käyttäjätunnusta voisi tehdä.
+- Kaikkien QuerySelectFieldien edit-toiminnallisuuden oletusarvo. Nyt mikään niistä ei näytä tämänhetkistä muokattavaa arvoa automaattisesti.
+- Käyttäjätunnuksen tietojen muokkaus pienemmillä rooleilla kuin admin
+- Näistä lisää tiedostossa LITodo
 
 ## SQL-toiminnot:
 - Create tablet:
@@ -145,10 +158,3 @@ joten ohjelma haki kaikkien käyttäjien yksilölliset roolit selectfieldiin.
       WHERE <taulu.id> = <id>"
 
 
-## Tekemättä jääneet toiminnot:
-- Järkevät yhteenvetokyselyt
-- Tulostaulun(yksittäisen kilpailun siis) validointi siten, ettei samaan tauluun voi lisätä kahta samaa kilpailijaa
-- Rekisteröinnin validointi siten, ettei kahta samannimistä käyttäjätunnusta voisi tehdä.
-- Kaikkien QuerySelectFieldien edit-toiminnallisuuden oletusarvo. Nyt mikään niistä ei näytä tämänhetkistä muokattavaa arvoa automaattisesti.
-- Käyttäjätunnuksen tietojen muokkaus pienemmillä rooleilla kuin admin
-- Näistä lisää tiedostossa LITodo
