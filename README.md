@@ -66,3 +66,6 @@ Lajissani, purjelautailussa on joka vuosi useita eri kilpailuja muutamassa eri l
 - Suositeltavaa on myös Visual Studio Code, jossa lähdekoodia voi tarkastella ja muokata helposti: (https://code.visualstudio.com/)
 - Mikäli sovelluksen haluaa Herokuun, tarvitset työvälineet Herokun käyttöön: (https://devcenter.heroku.com/articles/heroku-cli)
 - Kattavat ohjeet toimintoihin löydät täältä: (https://materiaalit.github.io/tsoha-19/tyovalineet/)
+- HUOM! Jotta ohjelma alkaa toimimaan, ja tietokantaan ei ole vielä laitettu mitään, joudut tietokannanhallintajärjestelmälläsi lisätä tauluihin 'User' sekä 'Rooli' admin-käyttäjän tiedot.
+	* INSERT INTO account (name, username, password, rooli_id) VALUES ('Valvoja', 'admin', 'admin', 1);
+	* INSERT INTO Rooli (name) VALUES ('admin');

@@ -1,39 +1,40 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{% if current_user.rooli_id == 1 %}
   <table class="table table-hover table-dark">
     <thead>
       <tr>
-        <th>Luokka</th>
+        <th>ID</th>
+        <th>Rooli</th>
       </tr>
     </thead>
     <tbody>
-      {% for luokka in luokat %}
+      {% for rooli in roolit %}
       <tr>
-        <td>{{ luokka.name }}</td>
+        <td>{{ rooli.id }}</td>
+        <td>{{ rooli.name }}</td>
         <td>
-          {% if current_user.rooli_id == 1 %}
+          
           <div class="d-flex flex-row justify-content-around">
-            <form method="GET" action="{{ url_for('luokat_show', luokka_id=luokka.id) }}">
+            <form method="GET" action="{{ url_for('roolit_show', rooli_id=rooli.id) }}">
               <input class="btn btn-primary" type="submit" value="Muokkaa">
             </form>
-            <form method="POST" action="{{ url_for('luokat_delete', luokka_id=luokka.id) }}">
+            <form method="POST" action="{{ url_for('roolit_delete', rooli_id=rooli.id) }}">
               <input class="btn btn-primary" type="submit" value="Poista">
             </form>
           </div>
         </td>
       </tr>
-      {% endif %}
       {% endfor %}
     </tbody>
   </table>
-  {% if current_user.rooli_id == 1 %}
   <div class="d-flex justify-content-center links">
-      <form method="GET" action="{{ url_for('luokat_form') }}">
+      <form method="GET" action="{{ url_for('roolit_form') }}">
         <div class="form-group">
-          <input class="btn btn-primary" type="submit" value="Lisää luokka"/>
+          <input class="btn btn-primary" type="submit" value="Lisää rooli"/>
         </div>
       </form>
   </div>
-  {% endif %}
+{% endif %}
 {% endblock %}

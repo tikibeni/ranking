@@ -9,6 +9,17 @@
     <!-- SARAKKEET -->
 
     <thead>
+      <h1 class="display-4">
+        <ul class="list-inline">
+        {% if kilpailun_Tiedot is defined %}
+        {% for rivi in kilpailun_Tiedot %}
+          <li class="list-inline-item">{{ rivi.luokka }} | </li>
+          <li class="list-inline-item">{{ rivi.kilpnimi }} | </li>
+          <li class="list-inline-item">{{ rivi.kilpaikka }}</li>
+        {% endfor %}
+        {% endif %}
+        </ul>
+      </h1>
       <tr>
         <th scope="col">Sija</th>
         <th scope="col">Purjenumero</th>
@@ -29,6 +40,18 @@
         <td>{{ rivi.nimi }}</td>
         <td>{{ rivi.pursiseura }}</td>
         <td>{{ rivi.pisteet }}</td>
+        <td>
+          {% if current_user.rooli_id == 1 %}
+          <div class="d-flex flex-row justify-content-around">
+            <form method="GET" action="{{ url_for('tulokset_show_edit', tulokset_id=rivi.id) }}">
+              <input class="btn btn-primary" type="submit" value="Muokkaa">
+            </form>
+            <form method="POST" action="{{ url_for('tulokset_delete', tulokset_id=rivi.id) }}">
+              <input class="btn btn-primary" type="submit" value="Poista">
+            </form>
+          </div>
+          {% endif %}
+        </td>
       </tr>
       {% endfor %}
       {% endif %}

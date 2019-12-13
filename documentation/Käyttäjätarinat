@@ -1,5 +1,6 @@
-# Käyttäjätarinat:
+# Käyttäjätarinat
 
+## Toiminnot
 - Kirjautuminen:
   * Mahdollisuus kirjautua sisään ja ulos.
     - "Kirjaudu sisään" -painikkeesta sovelluksen oikeasta yläkulmasta.
@@ -10,36 +11,114 @@
 - Luokat
   * Mahdollisuus lisätä kilpailuluokkia (admin)
   * Mahdollisuus muokata ja poistaa kilpailuluokkia (admin)
-  * Mahdollisuus tarkastella listasta kaikkia listtyjä luokkia
+  * Mahdollisuus tarkastella listasta kaikkia lisättyjä luokkia
 
 - Kilpailu
   * Mahdollisuus lisätä kilpailuja käyttäen hyödyksi taulua 'Luokka' (admin)
   * Mahdollisuus muokata ja poistaa kilpailuja (admin)
   * Mahdollisuus tarkastella listaa kilpailuista.
+  * Mahdollisuus tarkastella kilpailun tuloksia
+
+- Tulos
+  * Mahdollisuus luoda tulostauluja kilpailu- ja kilpailijakohtaisesti (CRUD Adminilla)
 
 - Kilpailija
   * Mahdollisuus lisätä, muokata ja poistaa kilpailijoita (admin)
+  * Mahdollisuus luoda käyttäjä-kilpailija-yhteys (kilpailija-rooli)
+
+- Rooli
+  * Mahdollisuus lisätä, muokata ja poistaa käyttäjärooleja (admin)
 
 - User
-  * Käyttäjäryhmät admin ja spectator
+  * Käyttäjäryhmät admin, kilpailija, spectator
+  * Adminilla oikeudet kaikkeen, kilpailijalla oikeus liittää kilpailija-olio itseensä, spectator voi tarkastella
 
-- Tulos
-  * Mahdollisuus luoda tulostauluja kilpailu- ja kilpailijakohtaisesti
+- Etusivu
+  * Näyttää tulevat kilpailut
+  * Tervehtii käyttäjää 
+  * Ilmoittaa kilpailija-roolin omaavalle käyttäjälle linkitetyn kilpailija-olion ja jos ei ole linkitetty niin ehdottaa linkittämistä
 
 
-- Etusivulla on yksi tauluja vertaileva toiminnallisuus, jonka SQL-kysely on:
+## SQL-toiminnot:
+- Create tablet:
 
+CREATE TABLE luokka (
+	id INTEGER NOT NULL, 
+	name VARCHAR(20) NOT NULL, 
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE liitostaulu (
+	id INTEGER NOT NULL, 
+	sijoitus INTEGER NOT NULL, 
+	pisteet INTEGER NOT NULL, 
+	kilpailu_id INTEGER NOT NULL, 
+	kilpailija_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(kilpailu_id) REFERENCES kilpailu (id), 
+	FOREIGN KEY(kilpailija_id) REFERENCES kilpailija (id)
+);
+
+CREATE TABLE kilpailu (
+	id INTEGER NOT NULL, 
+	name VARCHAR(50) NOT NULL, 
+	venue VARCHAR(30) NOT NULL, 
+	startdate DATE NOT NULL, 
+	enddate DATE NOT NULL, 
+	luokka_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(luokka_id) REFERENCES luokka (id)
+);
+
+CREATE TABLE rooli (
+	id INTEGER NOT NULL, 
+	name VARCHAR(20) NOT NULL, 
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE kilpailija (
+	id INTEGER NOT NULL, 
+	name VARCHAR(50) NOT NULL, 
+	sailnumber VARCHAR(10) NOT NULL, 
+	sailclub VARCHAR(25) NOT NULL, 
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE account (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	name VARCHAR(144) NOT NULL, 
+	username VARCHAR(144) NOT NULL, 
+	password VARCHAR(144) NOT NULL, 
+	rooli_id INTEGER, 
+	kilpailija_id INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(rooli_id) REFERENCES rooli (id), 
+	FOREIGN KEY(kilpailija_id) REFERENCES kilpailija (id)
+);
+
+- Kaikissa tauluissa on indeksöidyt oliot
+- Normalisoin roolit erilliseen tauluun account-taulusta, koska tunnuksia muokatessa haen roolit QuerySelectFieldillä,
+joten ohjelma haki kaikkien käyttäjien yksilölliset roolit selectfieldiin.
+
+- Muut:
+  * Näyttää tulevat kilpailut:
     "SELECT Luokka.name, Kilpailu.name, Kilpailu.startdate, Kilpailu.enddate FROM Kilpailu"
 	    " LEFT JOIN Luokka ON Luokka.id = Kilpailu.luokka_id"
 		" WHERE Kilpailu.enddate > CURRENT_TIMESTAMP"
 		" GROUP BY Kilpailu.startdate"
 
-  * Näyttää tulevat (verrateen tämänhetkiseen päivämäärään) kilpailut.
+  * Tulosten kokoava kysely on tämä:
+    "SELECT liitostaulu.sijoitus, Kilpailija.sailnumber, Kilpailija.name, Kilpailija.sailclub, liitostaulu.pisteet FROM liitostaulu"
+      " JOIN Kilpailija ON Kilpailija.id = liitostaulu.kilpailija_id"
+      " JOIN Kilpailu ON Kilpailu.id = liitostaulu.kilpailu_id"
+      " WHERE liitostaulu.kilpailu_id = :iidee"
+      " ORDER BY liitostaulu.sijoitus"
 
-- Tulosten kokoava kysely on tämä:
+## Tekemättä jääneet toiminnot:
+- Tulostaulun(yksittäisen kilpailun siis) validointi siten, ettei samaan tauluun voi lisätä kahta samaa kilpailijaa
+- Kaikkien QuerySelectFieldien edit-toiminnallisuuden oletusarvo. Nyt mikään niistä ei näytä nyt muokattavaa arvoa automaattisesti.
+- Käyttäjätunnuksen tietojen muokkaus pienemmillä rooleilla kuin admin
 
-  "SELECT liitostaulu.sijoitus, Kilpailija.sailnumber, Kilpailija.name, Kilpailija.sailclub, liitostaulu.pisteet FROM liitostaulu"
-    " JOIN Kilpailija ON Kilpailija.id = liitostaulu.kilpailija_id"
-    " JOIN Kilpailu ON Kilpailu.id = liitostaulu.kilpailu_id"
-    " WHERE liitostaulu.kilpailu_id = :iidee"
-    " ORDER BY liitostaulu.sijoitus"
+- Näistä lisää tiedostossa LITodo

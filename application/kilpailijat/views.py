@@ -2,13 +2,14 @@ from flask import render_template, request, redirect, url_for
 from flask_login import current_user
 
 from application import app, db, login_manager, login_required
+from application.auth.models import User
 from application.kilpailijat.models import Kilpailija
 from application.kilpailijat.forms import KilpailijaForm
 
 # Haetaan kaikki kilpailijat list.html:ään
 @app.route("/kilpailijat/", methods=["GET"])
 def kilpailijat_index():
-    return render_template("kilpailijat/list.html", kilpailijat=Kilpailija.query.all())
+    return render_template("kilpailijat/list.html", kilpailijat=Kilpailija.query.all(), kilpailijaLinkki=User.kilpailijaLinkki())
 
 # Haetaan lomake uuden kilpailijan luomista varten new.html:ään
 @app.route("/kilpailijat/new/", methods=["GET"])

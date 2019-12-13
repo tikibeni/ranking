@@ -1,6 +1,30 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<!-- Tervehdysviesti + linkitysinfo, mikäli kilpailija-->
+{% if current_user.is_authenticated %}
+  <h1>Hei {{ current_user.name }}!</h1>
+  {% if current_user.rooli_id == 2 %}
+    {% if current_user.kilpailija_id != None %}
+      <h2>Käyttäjäsi on yhdistetty kilpailijaan </h2>
+      {% for kilpailija in kilpailijat %}
+        {% if current_user.kilpailija_id == kilpailija.id %}
+          <h3>{{ kilpailija.sailnumber }} {{ kilpailija.name }}</h3>
+          <form method="POST" action="{{ url_for('auth_disconnect') }}">
+            <input class="btn btn-primary" type="submit" value="Poista linkitys">
+          </form>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <h2>Et ole vielä liittänyt käyttäjääsi kilpailijaan</h2>
+      <form method="GET" action="{{ url_for('kilpailijat_index') }}">
+        <input class="btn btn-primary" type="submit" value="Liitä se täältä">
+      </form>
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+<!-- Tulevat kilpailut taulukkona -->
   <table class="table table-hover">
     <thead>
       <th>Luokka</th>
@@ -10,7 +34,6 @@
     </thead>
     <tbody>
       {% if tulevat_kisat is defined %}
-      
       <h1 class="display-4 font-weight-small">Tulevat kilpailut:</h1>
       {% for rivi in tulevat_kisat %}
       <tr>

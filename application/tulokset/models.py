@@ -17,11 +17,22 @@ class Tulos(db.Model):
         self.kilpailu_id = kilpailu_id
         self.kilpailija_id = kilpailija_id
 
+    def get_id(self):
+        return self.id
+    
+    def get_kilpailuId(self):
+        return self.kilpailu_id
+
+    def get_kilpailijaId(self):
+        return self.kilpailija_id
+
+
     # Metodi kilpailukohtaisten kilpailijatulosten hakemiseen Kilpailu.id:n avulla
     @staticmethod
     def kilpailunTulokset(tarkasteltavaKilpailuId):
 
-        stmt = text("SELECT liitostaulu.sijoitus, Kilpailija.sailnumber, Kilpailija.name, Kilpailija.sailclub, liitostaulu.pisteet FROM liitostaulu"
+        stmt = text("SELECT liitostaulu.sijoitus, Kilpailija.sailnumber, Kilpailija.name, Kilpailija.sailclub,"
+                    " liitostaulu.pisteet, liitostaulu.id FROM liitostaulu"
                     " JOIN Kilpailija ON Kilpailija.id = liitostaulu.kilpailija_id"
                     " JOIN Kilpailu ON Kilpailu.id = liitostaulu.kilpailu_id"
                     " WHERE liitostaulu.kilpailu_id = :iidee"
@@ -30,6 +41,21 @@ class Tulos(db.Model):
 
         response = []
         for row in res:
-            response.append({"sijoitus":row[0],"purjenumero":row[1],"nimi":row[2],"pursiseura":row[3],"pisteet":row[4]})
+            response.append({"sijoitus":row[0],"purjenumero":row[1],"nimi":row[2],"pursiseura":row[3],"pisteet":row[4],"id":row[5]})
 
         return response
+
+    # Metodi tietyn kilpailun tietojen hakua varten
+    @staticmethod
+    def kilpailunTiedot(tarkasteltavaKilpailuId):
+
+        stmt = text ("SELECT Luokka.name, Kilpailu.name, Kilpailu.venue FROM Kilpailu"
+                    " JOIN Luokka ON Luokka.id = Kilpailu.luokka_id"
+                    " WHERE Kilpailu.id = :iidee")
+        res = db.engine.execute(stmt, iidee=tarkasteltavaKilpailuId)
+
+        response = []
+        for row in res:
+            response.append({"luokka":row[0],"kilpnimi":row[1],"kilpaikka":row[2]})
+
+        return response 

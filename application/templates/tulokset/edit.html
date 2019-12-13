@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('tulokset_edit', tulokset_id=tulokset.id) }}"> 
+  <div class="form-group">
+    {{ form.kilpailija_id.label }}
+    {{ form.kilpailija_id(class="form-control") }}
+    {% for error in form.kilpailija_id.errors %}
+      {{ error }}
+    {% endfor %}
+  </div>
+  <div class="form-group">
+    {{ form.sijoitus.label }}
+    {{ form.sijoitus(class="form-control", placeholder="Sijoitus") }}
+    {% for error in form.sijoitus.errors %}
+      {{ error }}
+    {% endfor %}
+  </div>
+  <div class="form-group">
+    {{ form.pisteet.label }}
+    {{ form.pisteet(class="form-control", placeholder="Pisteet") }}
+    {% for error in form.pisteet.errors %}
+      {{ error }}
+    {% endfor %}
+  </div>
+  <button type="submit" class="btn btn-primary">Tallenna</button>
+</form>
+{% endblock %}

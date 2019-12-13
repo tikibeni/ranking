@@ -26,7 +26,7 @@
             <a class="nav-link" href="{{ url_for('kilpailijat_index') }}">Kilpailijat</a>
           </li>
 
-          {% if current_user.role == 'admin' %}
+          {% if current_user.rooli_id == 1 %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('luokat_form') }} ">Lisää kilpailuluokka</a>
           </li>
@@ -36,6 +36,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('kilpailijat_form') }}">Lisää kilpailija</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth_index') }}">Hallitse käyttäjiä</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('roolit_index') }}">Käyttäjäroolit</a>
+          </li>
           {% endif %}
 
         </ul>
@@ -43,7 +49,7 @@
 
         {% if current_user.is_authenticated %}
           <div class="navbar-text">
-            Sisäänkirjautunut tunnuksella: {{ current_user.name }}
+            Tervetuloa käyttäjä: {{ current_user.name }}  
           </div>
           <div class="navbar-text" style="padding-left:16px;">
             <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>

@@ -26,7 +26,7 @@
             <form method="GET" action="{{ url_for('tulokset_show', kilpailu_id=rivi.kilpailutunnus) }}">
               <input class="btn btn-primary" type="submit" value="Tulokset">
             </form>
-            {% if current_user.role == 'admin' %}
+            {% if current_user.rooli_id == 1 %}
             <form method="GET" action="{{ url_for('tulokset_form', kilpailu_id=rivi.kilpailutunnus) }}">
               <input class="btn btn-primary" type="submit" value="Lisää tulos">
             </form>
@@ -44,5 +44,15 @@
       {% endfor %}
     </tbody>
   {% endif %}
+  
   </table>
+  {% if current_user.rooli_id == 1 %}
+  <div class="d-flex justify-content-center links">
+      <form method="GET" action="{{ url_for('kilpailut_form') }}">
+        <div class="form-group">
+          <input class="btn btn-primary" type="submit" value="Lisää kilpailu"/>
+        </div>
+      </form>
+  </div>
+  {% endif %}
 {% endblock %}

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Käyttäjätunnus</th>
+          <th>Nimi</th>
+          <th>Rooli</th>
+          <th>Kilpailija</th>
+          <th>Luotu</th>
+          <th>Tietoja muokattu viimeksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if current_user.rooli_id == 1 %}
+        {% if tunnukset is defined %}
+        {% for rivi in tunnukset %}
+        <tr>
+          <td>{{ rivi.kaytid }}</td>
+          <td>{{ rivi.kayttunnus }}</td>
+          <td>{{ rivi.kaytnimi }}</td>
+          <td>{{ rivi.kaytrooli }}</td>
+          <td>{{ rivi.kilpailija }}</td>
+          <td>{{ rivi.kaytluot }}</td>
+          <td>{{ rivi.kaytmuok }}</td>
+          
+          <td>
+            <div class="d-flex flex-row justify-content-around">
+              <form method="GET" action="{{ url_for('auth_show', account_id=rivi.kaytid) }}">
+                <input class="btn btn-primary" type="submit" value="Muokkaa">
+              </form>
+              {% if current_user.id != rivi.kaytid %}
+              <form method="POST" action="{{ url_for('auth_delete', account_id=rivi.kaytid) }}">
+                <input class="btn btn-primary" type="submit" value="Poista">
+              </form>
+              {% endif %}
+
+              {% if rivi.kilpailija != none %}
+              <form method="POST" action="{{ url_for('auth_disconnect_admin', account_id=rivi.kaytid) }}">
+                <input class="btn btn-primary" type="submit" value="Poista linkitys">
+              </form>
+              {% endif %}
+            </div>
+          </td>
+
+        </tr>
+        {% endfor %}
+        {% endif %}
+        {% endif %}
+      </tbody>
+  </table>
+{% endblock %}

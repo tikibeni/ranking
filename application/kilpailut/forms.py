@@ -5,18 +5,18 @@ from application.luokat.models import Luokka
 
 from wtforms.validators import DataRequired
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from wtforms import Form, StringField, DateTimeField, validators
+from wtforms.fields.html5 import DateField
+from wtforms import Form, StringField, validators, ValidationError
 
 # Lomake Kilpailua varten
 class KilpailuForm(FlaskForm):
 	name = StringField("Nimi:", [validators.Length(min=2, max=40)])
 	venue = StringField("Kilpailupaikka: ", [validators.Length(min=3, max=30)])
-	startdate = DateTimeField("Alkamispäivä: ", [validators.DataRequired(message="Syötä alkupäivämäärä muodossa: yyyy-mm-dd hh:mm:ss!")])
-	enddate = DateTimeField("Loppumispäivä: ", [validators.DataRequired(message="Syötä loppupäivämäärä muodossa: yyyy-mm-dd hh:mm:ss!")])
-	luokka_id = QuerySelectField("Luokka: ", query_factory=lambda: Luokka.query.all(), get_label='name')
+	startdate = DateField("Alkamispäivä: ", [validators.DataRequired(message="Syötä alkupäivämäärä muodossa: dd-mm-yyyy!")])
+	enddate = DateField("Loppumispäivä: ", [validators.DataRequired(message="Syötä loppupäivämäärä muodossa: dd-mm-yyyy!")])
+	luokka_id = QuerySelectField("Luokka: ",[validators.DataRequired(message="Valitse luokka")], query_factory=lambda: Luokka.query.all(), get_label='name', allow_blank=True, blank_text="Valitse luokka")
 
 	# Validaattori, joka tarkistaa kilpailun päivämäärien loogisuuden
-	## Lisää tähän liittyen oma virheviesti!!
 	def validate(self):
 		if not Form.validate(self):
 			return False

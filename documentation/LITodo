@@ -3,95 +3,89 @@ by tikibeni
 
 Log:
 -------------------
-14.11.2019: Sovellus on Herokussa ja toimii nyt tietokantataululla 'Luokka'. Myös kirjautumistoiminnallisuus
-luotu sivustolle.
+14.11.2019: Sovellus on Herokussa ja toimii nyt tietokantataululla 'Luokka'. Myös kirjautumistoiminnallisuus luotu sivustolle.
 
-21.11.2019: Tässä erässä olikin hieman enemmän tehtävää. Nyt taulu 'Luokka' toimii CRUDilla ja sovelluksen 
-sivuja on hiottu uuteen uskoon. Eri toiminnallisuuksissa on vielä reippaasti hiottavaa. Seuraavaksi alan 
-lisäämään muita tauluja sovellukseen ja yhdistelemään niiden tietoja, jonka myötä pääsemme lähemmäksi
-päämäärää. Internetistä löytyi paljon hyödyllistä infoa.
+21.11.2019: Tässä erässä olikin hieman enemmän tehtävää. Nyt taulu 'Luokka' toimii CRUDilla ja sovelluksen sivuja on hiottu uuteen uskoon. 
+Eri toiminnallisuuksissa on vielä reippaasti hiottavaa. Seuraavaksi alan lisäämään muita tauluja sovellukseen ja yhdistelemään niiden
+tietoja, jonka myötä pääsemme lähemmäksi päämäärää. Internetistä löytyi paljon hyödyllistä infoa.
 
 28.11.2019: Taulun 'Luokka' CRUD saatiin toimimaan hienosti. Nyt luokkia voi muokata siten, että alkuperäinen nimi näkyy muokkauskentässä. 
-Ulkoasuun tehty muutoksia - projekti etenee hienosti vaikkakin taulujen väliset yhteydet aiheuttavat hieman päänvaivaa. Aikaisempi validointiongelma saatiin korjattua.
+Ulkoasuun tehty muutoksia - projekti etenee hienosti vaikkakin taulujen väliset yhteydet aiheuttavat hieman päänvaivaa. Aikaisempi
+validointiongelma saatiin korjattua.
 
-29.11.2019: Taulu 'Kilpailu' saatu toimimaan alkuun. Pitää vielä selvitellä, miten FK: luokka_id saisi toimimaan paremmin. Fiksataan seuraavassa updatessa luokan näkyminen
-numerona merkkijonoksi. Lisäksi ulkoasu-uudistuksia. Näitä hiotaan.
+29.11.2019: Taulu 'Kilpailu' saatu toimimaan alkuun. Pitää vielä selvitellä, miten FK: luokka_id saisi toimimaan paremmin. Fiksataan 
+seuraavassa updatessa luokan näkyminen numerona merkkijonoksi. Lisäksi ulkoasu-uudistuksia. Näitä hiotaan.
 
-5.12.2019: Rekisteröintimahdollisuus lisätty, kilpailujen listaus toimii nyt hienosti kyselyjen kautta, mutta pitää vielä selvittää miten saan selectfieldin toimimaan 
-paremmin. Nyt siinä ei näy "nykyistä" luokkaa, vaan templatearvo. Lisäksi validointi menee päin mäntyä mikäli esimerkiksi syöttää muokatessa väärässä muodossa ajan.
-Pitää fiksata nuo. Lisäksi ulkoasupäivitystä.
+5.12.2019: Rekisteröintimahdollisuus lisätty, kilpailujen listaus toimii nyt hienosti kyselyjen kautta, mutta pitää vielä selvittää miten
+saan selectfieldin toimimaan paremmin. Nyt siinä ei näy "nykyistä" luokkaa, vaan templatearvo. Lisäksi validointi menee päin mäntyä mikäli 
+esimerkiksi syöttää muokatessa väärässä muodossa ajan. Pitää fiksata nuo. Lisäksi ulkoasupäivitystä.
+
+13.12.2019(Tsohan viimeinen päivä): Useita toiminnallisuuksia lisätty (roolit, käyttäjä-kilpailija-yhteys, käyttäjänhallintasivu). Yhteys 
+luotu käyttäjätunnuksen ja kilpailijan välille, jotta kilpailija-roolin omistava tunnus voi liittää kilpailija-olion omaan tunnukseensa 
+(account.kilpailija_id). Validointeja lisätty sinne tänne. 
 --------------
 
 TODO (priojärj.):
 --------------
-1. Tulostaulun toiminnallisuus
-    * Tulostaulukon pitää saada reitin kautta: kilpailuolio, kilpailijaolio sekä kilpailijan sijoitus
-2. Yhteenvetokyselyt esim. etusivulle
-3. Userin liittäminen tauluun Kilpailija
-4. Toiminnallisuuksien hiominen / korjaaminen
-    - KilpailuForm validointiviesti päivämäärät
-    - Kilpailun muokkaus, SelectField lähtöarvo
-    - Sisäänkirjautumisen index-redirect
-    - Poistamisiin liittyvä varmistaja
-    - Resisteröintiin liittyvä varmistaja: ettei voi tehdä kahta samanlaista käyttäjätunnusta
-    - Rekisteröintiin liittyvä onnistumisviesti
-    - Tulostaulun CRUD loppuun
-    - Tulostaulun validointi!!!
-        * Sijoitus
-5. Käyttäjänhallintasivu
-    - Moderaattorioikeudet?
-    - CRUD, josta voi poistaa käyttäjiä, ja muokata niiden tietoja.
-6. Dokumennoinnin ylläpito: 
-    * Toiminnallisuuksiin yleisesti
+1. Kaksi yhteenvetokyselyä esim. etusivulle
+    * Kilpailuja, tuloksia, kilpailijoita, luokkia yhteensä tyyliin "Sovellukseen on kirjattu kilpailuja: x, tuloksia: y, kilpailijoita: z ja luokkia: d"
+    * Viimeisimmän viiden kilpailun tulokset?
+2. Toiminnallisuuksien hiominen / korjaaminen
+    - Yleisesti:
+        * Poistamisiin liittyvä varmistaja
+        * Tulosten sivutus ja hakutoiminnot
+        * Älä jätä koodiin kommentoitua/käyttämätöntä koodia.
+    - Kilpailu:
+        * Haku- ja järjestystoiminto
+            - Normaalijärjestys alkupäivämäärän(uusin) mukaan
+        * Edit: QuerySelectField placeholder
+        * Validointi: 
+            - Virheviesti koskien päivämääriä näkyviin
+    - Kilpailija:
+        * Haku- ja järjestystoiminto
+            - Normaalijärjestys purjenumeron perusteella
+        * Edit: QuerySelectField placeholder
+    - Tulostaulu:
+        * Toimimaan siten, että sijoitus perustuu reaaliaikaisesti pistemäärään -> Attribuutti 'sijoitus' pois.
+        * Validointi:
+            - Ettei pysty lisäämään samaan kilpailuun samaa henkilöä useammin kuin kerran
+                * Esim. siten, ettei QuerySelectField näytä jo Tulos.id:n sisältäviä kilpailijoita (id:n perusteella)
+    - Auth:
+        * Kukin käyttäjä pystyy muokata omaa nimeä ja salasanaa
+            - Oma käyttäjäsivu
+            - Validointi passwordfieldillä
+        * Edit-toiminnon QuerySelectField näyttämään nyt muokattavan käyttäjän rooli.
+        * Sisäänkirjautumisen redirect toimimaan järkevästi -> Ei aina index.htmlään
+        * Validointi:
+            - Rekisteröintiin liittyvä validaattori: ettei voi tehdä kahta samanlaista käyttäjätunnusta
+3. Dokumennoinnin ylläpito: 
+    * Käyttäjätarinat ja niiden SQL-kyselyt ajan tasalle!
     * Readme kurssiohjeiden mukaiseksi
-    * Tietokantakaavio realistiseksi
-7. Ulkoasun parantelu surffityyliseksi ennen dedistä
-    - Lisäksi pitää saada Kirjaudu sisään -painike dropdown valikon sisään.
-    - Katso sovellusta pienemmällä ruudulla, niin huomaat.
+        - Asennusohje
+        - Käyttöohje
+4. Ulkoasun parantelu
+    - Kirjautumisvirheen viestin näyttäminen jotenkin hienommin!
+    - Rekisteröinnin onnistumisessa onnistumisviesti
+    - Yleinen hiominen
+
 --------------
 
 Ideoita:
 --------------
-Kurssin aikaiset:
-- Kilpailija- ja User-taulujen välille yhteys.
-- Userille mahdollisuus lähettää pyyntö admin ryhmälle käsiteltäväksi, että "Olen tämä kilpailija - liitä kilpailija.id omaan Useriin."
-- KAIKKIIN POISTOIHIN VARMISTUSKYSYMYS tyyliin: syötä olion nimi poistaaksesi.
-- Adminille oma käyttäjienhallintasivu, mistä voi poistaa tai muokata käyttäjätietoja
-
 Kurssin ulkopuoliset:
 - Kilpailun tulos-painike näkyviin vasta, kun nykyinen päivämäärä on vähintään sama kuin kilpailun alkupäivämäärä
 - Kilpailija voi katsoa User-profiilistaan tuloksiaan ja ylipäätään käyttäjätietojaan, josta voi muokata käyttäjätietoja.
 - Tuloslistan toimiminen siten, että se perustuu ajettuihin lähtöihin ja pistelaskusääntöihin (JavaScript)
     * Taulu 'Lähtö' ja sen linkitys nykyiseen ketjuun
     * Pistelaskusäännöt(discardit, tasapistetilanteet), erilaiset lähtötulokset(integer, DNF, DNS, DSQ jne.)
-    * Huomioi, ettei kilpailun lähtöjen määrää voida tietää etukäteen
+    * Huomioi, ettei kilpailun lähtöjen tarkkaa määrää voida tietää etukäteen
 - Käyttäjä voi tulevien kilpailuiden tai kilpailujen kautta ennakkoilmoittautua tulevaan kilpailuun!
-- Keskustelupalsta tms., jotta speceilläkin jotain hyödyllistä tekemistä
+- Keskustelupalsta, profiili tms., jotta speceilläkin jotain hyödyllistä tekemistä
+- Kilpailijan välineet?
 
 ---------------
 
 Välitavoitteet:
 ---------------
-Kurssin aikaiset:
-- Kaikki taulut toimimaan CRUD
-    * Monesta moneen yhteys toimimaan kunnolla
-        - Tulokset-sivu
-            * Koska kilpailuja tulee paljon, niin tarvitsee sivun, jossa listattuna kaikki olemassaolevat kilpailut
-                - Toimii linkkinä kilpailun tuloksiin
-                    -> Toisin sanoen kilpailut/list.htmlään toiminnallisuus, jossa kilpailun nimen kohdalla linkki tuloksiin!!
-                    --> Tulostaulukolle oma html
-                - Kullekin kilpailulle oma tulostaulukko
-            * Kokoaa yhteen taulut kilpailija ja kilpailu
-            * Mahdollisuus luoda sortable dynaaminen tulostaulu (voi lisätä kilpailijoita (rivilkm) ja lähtöjä (sarakelkm))
-            * Taulun yläreunassa kilpailun nimi, paikka, päivämäärät ja osallistujamäärä
-            * Taulun rivit koostuvat kilpailijoista ja heidän sijoituksista + yhteispisteistä
-            * Sarakkeet ovat siis: sijoitus, purjenumero, nimi, pursiseura, lisättävä määrä lähtöjä ja niiden sijoitukset + yhteispisteet, jonka mukaan sijoitus.
 - Validit yhteenvetokyselyt
-    * Etusivulle viimeisimmän kilpailun tulostaulu
-        - Luokkakohtaisesti viimeisimmät?
-
-Kurssin jälkeen:
-- Tulokset
-    * Sarakkeellisesti dynaaminen taulukko, joka perustuu ajettuihin lähtöihin.
-    * Pistelaskusäännöt ja lähtötulosten variaatiot
-- Kilpailijan välineet?
+- Viimeiset hiomiset mitä ehtii

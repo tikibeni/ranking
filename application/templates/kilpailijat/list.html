@@ -16,7 +16,7 @@
         <td>{{ kilpailija.name }}</td>
         <td>{{ kilpailija.sailclub }}</td>
         <td>
-          {% if current_user.role == 'admin' %}
+          {% if current_user.rooli_id == 1 %}
           <div class="d-flex flex-row justify-content-around">
             <form method="GET" action="{{ url_for('kilpailijat_show', kilpailija_id=kilpailija.id) }}">
               <input class="btn btn-primary" type="submit" value="Muokkaa">
@@ -24,11 +24,37 @@
             <form method="POST" action="{{ url_for('kilpailijat_delete', kilpailija_id=kilpailija.id) }}">
               <input class="btn btn-primary" type="submit" value="Poista">
             </form>
-          </div>
           {% endif %}
+          {% if current_user.rooli_id == 2 %}
+            {% if current_user.kilpailija_id == None %}
+              {% if kilpailijaLinkki is defined %}
+                {% for liitos in kilpailijaLinkki %}
+                  {% if liitos.kilpid != kilpailija.id %}
+                  <form method="POST" action="{{ url_for('auth_connect', kilpailija_id=kilpailija.id) }}">
+                    <input class="btn btn-primary" type="submit" value="Liitä käyttäjääsi">
+                  </form>
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+              <form method="POST" action="{{ url_for('auth_connect', kilpailija_id=kilpailija.id) }}">
+                <input class="btn btn-primary" type="submit" value="Liitä käyttäjääsi">
+              </form>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+          </div>  
         </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+  {% if current_user.rooli_id == 1 %}
+  <div class="d-flex justify-content-center links">
+      <form method="GET" action="{{ url_for('kilpailijat_form') }}">
+        <div class="form-group">
+          <input class="btn btn-primary" type="submit" value="Lisää kilpailija"/>
+        </div>
+      </form>
+  </div>
+  {% endif %}
 {% endblock %}

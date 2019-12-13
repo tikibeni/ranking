@@ -7,8 +7,8 @@ class Kilpailu(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(50), nullable=False)
 	venue = db.Column(db.String(30), nullable=False)
-	startdate = db.Column(db.DateTime, nullable=False)
-	enddate = db.Column(db.DateTime, nullable=False)
+	startdate = db.Column(db.Date, nullable=False)
+	enddate = db.Column(db.Date, nullable=False)
 	luokka_id = db.Column(db.Integer, db.ForeignKey('luokka.id'),
 		nullable=False)
 

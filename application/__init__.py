@@ -27,6 +27,7 @@ login_manager.login_message = "Kirjaudu sisään käyttääksesi tätä."
 
 # Roolit
 from functools import wraps
+from application.roolit.models import Rooli
 
 ## Login_requiredin määrittäminen siten, että se vaatii admin-oikeudet.
 def login_required(role="ANY"):
@@ -42,11 +43,11 @@ def login_required(role="ANY"):
 
             if role != "ANY":
                 unauthorized = True
-
-                for user_role in current_user.get_role():
-                    if user_role == role:
-                        unauthorized = False
-                        break
+                
+                kayttajaRooli_ID = current_user.get_role()
+                verrattava = Rooli.query.get(kayttajaRooli_ID)
+                if verrattava.name == role:
+                    unauthorized = False
 
             if unauthorized:
                 return login_manager.unauthorized()
@@ -72,6 +73,9 @@ from application.kilpailijat import views
 
 from application.auth import models
 from application.auth import views
+
+from application.roolit import models
+from application.roolit import views
 
 # Lisää kirjautumisesta
 from application.auth.models import User

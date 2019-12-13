@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('roolit_edit', rooli_id=rooli.id) }}"> 
+  <div class="form-group">
+    {{ form.name.label }}
+    {{ form.name(class="form-control") }}
+    {% for error in form.name.errors %}
+      {{ error }}
+    {% endfor %}
+  </div>   
+  <button type="submit" class="btn btn-primary">Tallenna</button>
+</form>
+{% endblock %}

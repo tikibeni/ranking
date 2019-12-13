@@ -22,7 +22,8 @@ def kilpailut_form():
 @login_required(role="admin")
 def kilpailut_show(kilpailu_id):
     kilpailu = Kilpailu.query.get(kilpailu_id)
-    return render_template("kilpailut/edit.html", form = KilpailuForm(obj=kilpailu), kilpailu=kilpailu)
+    form = KilpailuForm(obj=kilpailu)
+    return render_template("kilpailut/edit.html", form = form, kilpailu=kilpailu)
 
 # Uuden kilpailun tietojen ottaminen lomakkeesta ja syöttäminen tietokantaan
 @app.route("/kilpailut/", methods=["POST"])
@@ -41,7 +42,6 @@ def kilpailut_create():
 
     return redirect(url_for("kilpailut_index"))
 
-# Korjaa editistä kilpailun määritys! Nyt ei suostu hakemaan selectfieldiin suoraan tämänhetkistä luokkaa ja editoinnissa validoinnin suhteen homma kusee.
 # Muokatun lomakkeen tietojen kerääminen ja syöttäminen tietokantaan
 @app.route("/kilpailut/<kilpailu_id>/", methods=["POST"])
 @login_required(role="admin")
