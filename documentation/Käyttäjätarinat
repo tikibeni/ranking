@@ -136,8 +136,7 @@ joten ohjelma haki kaikkien käyttäjien yksilölliset roolit selectfieldiin.
   * Kilpailijat list.html varten kysely, joka tarkistaa onko kilpailija yhdistetty jo käyttäjään:
 
     "SELECT account.kilpailija_id FROM account"
-		" LEFT JOIN Kilpailija ON Kilpailija.id = account.kilpailija_id"
-		" WHERE account.kilpailija_id""
+		" JOIN Kilpailija ON Kilpailija.id = account.kilpailija_id"
 
   * Yleisesti sqlalchemyn .query.all() hakee kaikki tiedot taulusta formaatilla:
     "SELECT * FROM <taulu>"

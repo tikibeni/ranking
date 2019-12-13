@@ -56,8 +56,7 @@ class User(db.Model):
 	@staticmethod
 	def kilpailijaLinkki():
 		stmt = text("SELECT account.kilpailija_id FROM account"
-					" LEFT JOIN Kilpailija ON Kilpailija.id = account.kilpailija_id"
-					" WHERE account.kilpailija_id")
+					" JOIN Kilpailija ON Kilpailija.id = account.kilpailija_id")
 		res = db.engine.execute(stmt)
 
 		response = []
