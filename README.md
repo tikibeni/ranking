@@ -1,7 +1,9 @@
-# windsurf-ranking
+# Tsoha 2019: Windsurf Ranking
 Järjestelmä purjelautailun kilpailukausien ranking-pistelaskua varten.
+
 Huom! Kurssin aikana pienennetty siten, että järjestelmä toimii pohjana kilpailuiden, niiden tulosten, luokkien ja kilpailijoiden luomiselle.
-Varsinainen ranking-pistelaskuosuus tulee ohjelmaan myöhemmin.
+
+Lisähuomio: järjestelmä on suoritettu opintojeni alussa harjoitustyönä. Kaikkia toimintoja ei ole implementoitu järjestelmään.
 
 # Herokuun:
 - [Tästä](https://windsurf-ranking.herokuapp.com)
