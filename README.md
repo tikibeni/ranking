@@ -29,7 +29,8 @@ käyttöön.
 
 ### Käytön aloittaminen
 - Jotta ohjelma toimii, joudut syöttämään tietokannanhallintaohjelmalla muutaman arvon kantaan tässä järjestyksessä:
-```postgresql
+- 
+```sql
     INSERT INTO Rooli (name) VALUES ('admin');
     INSERT INTO Rooli (name) VALUES ('kilpailija');
     INSERT INTO Rooli (name) VALUES ('spectator');
